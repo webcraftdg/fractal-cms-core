@@ -8,7 +8,7 @@
  * @package fractalCms\assets
  */
 
-namespace fractalCms\core\assets;
+namespace webcraftdg\fractalCms\core\assets;
 
 use yii\web\AssetBundle;
 use yii\web\View;
