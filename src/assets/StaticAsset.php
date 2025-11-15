@@ -9,7 +9,7 @@
  * @package fractalCms\assets
  */
 
-namespace fractalcms\core\assets;
+namespace FractalCMS\Core\assets;
 
 use yii\web\AssetBundle;
 use yii\web\View;

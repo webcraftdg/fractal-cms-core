@@ -9,7 +9,7 @@
  * @package fractalCms\controllers\api
  */
 
-namespace fractalcms\core\controllers\api;
+namespace FractalCMS\Core\controllers\api;
 
 use yii\filters\ContentNegotiator;
 use yii\rest\Controller;
