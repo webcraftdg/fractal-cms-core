@@ -25,7 +25,7 @@ class StaticAsset extends AssetBundle
     /**
      * @inheritdoc
      */
-    public $sourcePath = '@fractalcms/assets/static';
+    public $sourcePath = '@FractalCMS/assets/static';
 
     /**
      * @inheritdoc
