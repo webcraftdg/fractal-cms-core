@@ -302,7 +302,7 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
             $modules = Yii::$app->getModules();
             foreach ($modules as $module) {
                 if ($module instanceof FractalCmsCoreInterface) {
-                    $permissions = ArrayHelper::merge($permissions, $module->getMenu());
+                    $permissions = ArrayHelper::merge($menus, $module->getMenu());
                 }
             }
             return $menus;

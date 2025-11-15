@@ -14,7 +14,7 @@
  */
 
 use fractalCms\core\assets\StaticAsset;
-use fractalCms\core\helpers\Html;
+use yii\helpers\Html;
 use fractalCms\core\Module;
 
 $moduleInstance = Module::getInstance();
@@ -32,7 +32,7 @@ $baseUrl = StaticAsset::register($this)->baseUrl;
         </div>
         <div class="col-sm-7">
             <?php
-                echo \fractalCms\widgets\Menu::widget();
+                echo \fractalCms\core\widgets\Menu::widget();
             ?>
         </div>
         <div class="col-sm-1">
