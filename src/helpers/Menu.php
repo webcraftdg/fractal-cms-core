@@ -9,10 +9,10 @@
  * @package fractalCms/helpers
  */
 
-namespace fractalCms\core\helpers;
+namespace webcraftdg\fractalCms\core\helpers;
 
-use fractalCms\core\components\Constant;
-use fractalCms\core\Module;
+use webcraftdg\fractalCms\core\components\Constant;
+use webcraftdg\fractalCms\core\Module;
 use yii\base\Component;
 use Exception;
 use Yii;

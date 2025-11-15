@@ -8,7 +8,7 @@
  * @version XXX
  * @package fractalCms/widgets
  */
-namespace fractalCms\core\widgets;
+namespace webcraftdg\fractalCms\core\widgets;
 
 use yii\base\Widget;
 use Yii;

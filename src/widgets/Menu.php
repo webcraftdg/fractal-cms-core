@@ -8,9 +8,9 @@
  * @version XXX
  * @package fractalCms/widgets
  */
-namespace fractalCms\core\widgets;
+namespace webcraftdg\fractalCms\core\widgets;
 
-use fractalCms\core\helpers\Menu as MenuHelper;
+use webcraftdg\fractalCms\core\helpers\Menu as MenuHelper;
 use yii\base\Widget;
 use Yii;
 use yii\helpers\Url;

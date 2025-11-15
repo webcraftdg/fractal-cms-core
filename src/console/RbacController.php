@@ -8,10 +8,10 @@
  * @version XXX
  * @package fractalCms\console
  */
-namespace fractalCms\core\console;
+namespace webcraftdg\fractalCms\core\console;
 
-use fractalCms\core\components\Constant;
-use fractalCms\core\Module;
+use webcraftdg\fractalCms\core\components\Constant;
+use webcraftdg\fractalCms\core\Module;
 use yii\console\Controller;
 use Exception;
 use Yii;

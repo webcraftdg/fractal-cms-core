@@ -8,7 +8,7 @@
  * @version XXX
  * @package fractalCms\console
  */
-namespace fractalCms\core\console;
+namespace webcraftdg\fractalCms\core\console;
 
 use Exception;
 use fractalCms\components\Constant;

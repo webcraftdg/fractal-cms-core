@@ -11,10 +11,10 @@
  * @var $content string
  */
 
-use fractalCms\core\assets\BootstrapAsset;
-use fractalCms\core\assets\StaticAsset;
-use fractalCms\core\assets\WebpackAsset;
-use fractalCms\core\Module;
+use webcraftdg\fractalCms\core\assets\BootstrapAsset;
+use webcraftdg\fractalCms\core\assets\StaticAsset;
+use webcraftdg\fractalCms\core\assets\WebpackAsset;
+use webcraftdg\fractalCms\core\Module;
 use yii\helpers\Html;
 
 $moduleInstance = Module::getInstance();
@@ -47,7 +47,7 @@ $this->title = $moduleInstance->name;
                 <?php echo Html::beginTag('div', ['id' => 'main', 'class' => $class]); ?>
 <?php
 if (Yii::$app->user->isGuest === false) {
-    echo \fractalCms\widgets\Header::widget();
+    echo \webcraftdg\fractalCms\core\widgets\Header::widget();
 }
 echo Html::tag('cms-manage-alerts', '');
 
