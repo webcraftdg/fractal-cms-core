@@ -9,11 +9,11 @@
  * @package views
  *
  * @var \yii\web\View $this
- * @var \fractalcms\core\models\User $model
+ * @var \FractalCMS\Core\models\User $model
  */
 
 use yii\helpers\Html;
-use fractalcms\core\components\Constant;
+use FractalCMS\Core\components\Constant;
 ?>
 <div class="row">
     <div class="col-sm-12">

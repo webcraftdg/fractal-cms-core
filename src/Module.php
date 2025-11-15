@@ -9,16 +9,16 @@
  * @package fractalCms
  */
 
-namespace fractalcms\core;
+namespace FractalCMS\Core;
 
 use Exception;
-use fractalcms\core\components\Constant;
-use fractalcms\core\console\AdminController;
-use fractalcms\core\console\AuthorController;
-use fractalcms\core\console\RbacController;
-use fractalcms\core\interfaces\FractalCmsCoreInterface;
-use fractalcms\core\models\User;
-use fractalcms\core\helpers\Menu;
+use FractalCMS\Core\components\Constant;
+use FractalCMS\Core\console\AdminController;
+use FractalCMS\Core\console\AuthorController;
+use FractalCMS\Core\console\RbacController;
+use FractalCMS\Core\interfaces\FractalCmsCoreInterface;
+use FractalCMS\Core\models\User;
+use FractalCMS\Core\helpers\Menu;
 use Yii;
 use yii\base\BootstrapInterface;
 use yii\console\Application as ConsoleApplication;
@@ -150,9 +150,9 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
             if (isset($app->controllerMap['migrate']) === true) {
                 //Add migrations namespace
                 if (isset($app->controllerMap['migrate']['migrationNamespaces']) === true) {
-                    $app->controllerMap['migrate']['migrationNamespaces'][] = 'fractalcms\core\migrations';
+                    $app->controllerMap['migrate']['migrationNamespaces'][] = 'FractalCMS\Core\migrations';
                 } else {
-                    $app->controllerMap['migrate']['migrationNamespaces'] = ['fractalcms\core\migrations'];
+                    $app->controllerMap['migrate']['migrationNamespaces'] = ['FractalCMS\Core\migrations'];
                 }
                 //Add rbac
                 if (isset($app->controllerMap['migrate']['migrationPath']) === true) {

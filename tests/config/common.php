@@ -13,7 +13,7 @@ use yii\db\Connection;
 use yii\caching\DummyCache;
 use yii\log\FileTarget;
 use yii\caching\CacheInterface;
-use fractalcms\core\Module as FractalCmsModule;
+use FractalCMS\Core\Module as FractalCMSModule;
 $config = [
     'id' => 'webcraftdg/fractal-cms-core',
     'sourceLanguage' => 'fr',
@@ -54,7 +54,7 @@ $config = [
     ],
     'modules' => [
         'fractal-cms' => [
-            'class' => FractalCmsModule::class,
+            'class' => FractalCMSModule::class,
         ]
     ],
     'components' => [

@@ -9,11 +9,11 @@
  * @package fractalCms\controllers\api
  */
 
-namespace fractalcms\core\controllers\api;
+namespace FractalCMS\Core\controllers\api;
 
 use Exception;
-use fractalcms\core\components\Constant;
-use fractalcms\core\models\Parameter;
+use FractalCMS\Core\components\Constant;
+use FractalCMS\Core\models\Parameter;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\ForbiddenHttpException;

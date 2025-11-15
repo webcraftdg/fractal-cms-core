@@ -6,10 +6,10 @@
  *
  * @author David Ghyse <davidg@webcraftdg.fr>
  * @version XXX
- * @package fractalcms\core\interfaces
+ * @package FractalCMS\Core\interfaces
  */
 
-namespace fractalcms\core\interfaces;
+namespace FractalCMS\Core\interfaces;
 
 
 interface FractalCmsCoreInterface

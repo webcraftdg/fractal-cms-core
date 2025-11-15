@@ -3,9 +3,9 @@
 
 namespace Tests\Unit;
 
-use fractalcms\core\components\Constant;
-use fractalcms\core\models\Parameter;
-use fractalcms\core\models\User;
+use FractalCMS\Core\components\Constant;
+use FractalCMS\Core\models\Parameter;
+use FractalCMS\Core\models\User;
 use Tests\Support\UnitTester;
 use Yii;
 

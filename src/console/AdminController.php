@@ -8,11 +8,11 @@
  * @version XXX
  * @package fractalCms\console
  */
-namespace fractalcms\core\console;
+namespace FractalCMS\Core\console;
 
 use Exception;
-use fractalcms\core\models\User;
-use fractalcms\core\components\Constant;
+use FractalCMS\Core\models\User;
+use FractalCMS\Core\components\Constant;
 use Yii;
 use yii\console\Controller;
 use yii\console\ExitCode;

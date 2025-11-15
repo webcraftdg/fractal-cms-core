@@ -8,7 +8,7 @@
  * @version XXX
  * @package fractalCms\console
  */
-namespace fractalcms\core\console;
+namespace FractalCMS\Core\console;
 
 use Exception;
 use fractalCms\components\Constant;
