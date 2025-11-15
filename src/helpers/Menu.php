@@ -9,10 +9,10 @@
  * @package fractalCms/helpers
  */
 
-namespace fractalCms\core\helpers;
+namespace fractalcms\core\helpers;
 
-use fractalCms\core\components\Constant;
-use fractalCms\core\Module;
+use fractalcms\core\components\Constant;
+use fractalcms\core\Module;
 use yii\base\Component;
 use Exception;
 use Yii;

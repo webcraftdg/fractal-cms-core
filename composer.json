@@ -54,12 +54,12 @@
     },
     "autoload": {
         "psr-4": {
-            "fractalCms\\core\\": "src/"
+            "fractalcms\\core\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "fractalCms\\Tests\\": "tests/"
+            "fractalcms\\Tests\\": "tests/"
         }
     },
     "scripts": {

@@ -9,7 +9,7 @@
  * @package views
  *
  * @var \yii\web\View $this
- * @var \fractalCms\core\models\Parameter $model
+ * @var \fractalcms\core\models\Parameter $model
  * @var \yii\redis\ActiveQuery $itemsQuery
  */
 
