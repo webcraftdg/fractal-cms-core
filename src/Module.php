@@ -81,7 +81,7 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
     public function bootstrap($app)
     {
         try {
-            Yii::setAlias('@fractalcms', __DIR__);
+            Yii::setAlias('@FractalCMS', __DIR__);
             $app->setComponents([
                 'user' => [
                     'class' => WebUser::class,
