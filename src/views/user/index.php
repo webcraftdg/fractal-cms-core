@@ -10,7 +10,7 @@
  *
  * @var \fractalCms\models\User[] $models
  */
-use fractalCms\core\components\Constant;
+use fractalcms\core\components\Constant;
 use yii\helpers\Html;
 use yii\helpers\Url;
 ?>

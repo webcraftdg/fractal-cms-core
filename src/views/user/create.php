@@ -9,7 +9,7 @@
  * @package views
  *
  * @var \yii\web\View $this
- * @var \fractalCms\core\models\User $model
+ * @var \fractalcms\core\models\User $model
  */
 
 ?>

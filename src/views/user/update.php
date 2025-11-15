@@ -8,7 +8,7 @@
  * @version XXX
  * @package views
  *
- * @var \fractalCms\core\models\User $model
+ * @var \fractalcms\core\models\User $model
  */
 
 ?>

@@ -8,7 +8,7 @@
  * @version XXX
  * @package app\config
  */
-namespace fractalCms\core\migrations;
+namespace fractalcms\core\migrations;
 
 use yii\db\Migration;
 
