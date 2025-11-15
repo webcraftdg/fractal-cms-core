@@ -1,0 +1,78 @@
+<?php
+/**
+ * ParameterController.php
+ *
+ * PHP Version 8.2+
+ *
+ * @author David Ghyse <davidg@webcraftdg.fr>
+ * @version XXX
+ * @package fractalCms\controllers\api
+ */
+
+namespace fractalCms\core\controllers\api;
+
+use Exception;
+use fractalCms\core\components\Constant;
+use fractalCms\core\models\Parameter;
+use Yii;
+use yii\filters\AccessControl;
+use yii\web\ForbiddenHttpException;
+use yii\web\NotFoundHttpException;
+use yii\web\Response;
+
+class ParameterController extends BaseController
+{
+
+
+    /**
+     * @inheritDoc
+     */
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+        $behaviors['access'] = [
+            'class' => AccessControl::class,
+            'only' => ['delete'],
+            'rules' => [
+                [
+                    'allow' => true,
+                    'actions' => ['delete'],
+                    'verbs' => ['delete'],
+                    'roles' => [Constant::PERMISSION_MAIN_PARAMETER.Constant::PERMISSION_ACTION_DELETE],
+                ],
+            ],
+            'denyCallback' => function ($rule, $action) {
+                throw new ForbiddenHttpException();
+            }
+        ];
+        return $behaviors;
+    }
+
+
+    /**
+     * Delete Parameter
+     *
+     * @param $id
+     * @return Response
+     * @throws NotFoundHttpException
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
+     */
+    public function actionDelete($id) : Response
+    {
+        try {
+            $response = Yii::$app->getResponse();
+            $model = Parameter::findOne(['id' => $id]);
+            if ($model === null) {
+                throw new NotFoundHttpException('Parameter not found');
+            }
+            $model->delete();
+            $response->statusCode = 204;
+            return $response;
+        } catch (Exception $e)  {
+            Yii::error($e->getMessage(), __METHOD__);
+            throw  $e;
+        }
+    }
+
+}

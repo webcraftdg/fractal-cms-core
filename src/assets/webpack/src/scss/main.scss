@@ -1,0 +1,12 @@
+@tailwind utilities;
+@tailwind components;
+
+.form {
+  &-textarea {
+    width: 100%;
+  }
+}
+
+.dragging { opacity: 0.5; }
+.over { border: 2px dashed #007bff; }
+

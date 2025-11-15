@@ -1,0 +1,79 @@
+{
+    "name": "webcraftdg/fractal-cms-core",
+    "description": "FractalCMS - CORE - un CMS léger et modulaire basé sur Yii2",
+    "keywords": [
+        "fractal-cms",
+        "cms",
+        "core",
+        "php",
+        "yii2",
+        "website",
+        "webcraftdg"
+    ],
+    "version": "v1.0.0",
+    "homepage": "https://github.com/webcraftdg/fractal-cms-core",
+    "type": "library",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/webcraftdg/fractal-cms-core/issues"
+    },
+    "authors": [
+        {
+            "name": "David Ghyse",
+            "email": "davidg@webcraftdg.fr"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "ext-intl": "*",
+        "ext-dom": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "ext-gd": "*",
+        "ext-fileinfo": "*",
+        "vlucas/phpdotenv": "~5.0",
+        "yiisoft/yii2": "~2.0",
+        "yiisoft/yii2-redis": "~2.0",
+        "bower-asset/bootstrap": "~5.0",
+        "league/flysystem": "^3.25"
+    },
+    "require-dev": {
+        "yiisoft/yii2-debug": "~2.0",
+        "yiisoft/yii2-gii": "~2.0",
+        "codeception/codeception": "^5.3",
+        "codeception/module-phpbrowser": "*",
+        "codeception/module-asserts": "*",
+        "codeception/module-yii2": "^2.0",
+        "codeception/module-db": "^3.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "fractalCms\\core\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "fractalCms\\Core\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-install-cmd": []
+    },
+    "config": {
+        "process-timeout": 1800,
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true
+        }
+    },
+    "archive": {
+        "exclude": ["tests"]
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
