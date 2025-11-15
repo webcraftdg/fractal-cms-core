@@ -10,9 +10,9 @@
  *
  */
 
-namespace webcraftdg\fractalCms\core\controllers;
+namespace fractalCms\core\controllers;
 
-use webcraftdg\fractalCms\core\models\User;
+use fractalCms\core\models\User;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use Exception;

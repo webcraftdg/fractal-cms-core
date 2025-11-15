@@ -9,7 +9,7 @@
  * @package views
  *
  * @var \yii\web\View $this
- * @var \webcraftdg\fractalCms\core\models\Parameter $model
+ * @var \fractalCms\core\models\Parameter $model
  */
 
 ?>

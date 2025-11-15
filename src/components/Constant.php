@@ -9,9 +9,9 @@
  * @package fractalCms\components
  */
 
-namespace  webcraftdg\fractalCms\core\components;
+namespace  fractalCms\core\components;
 
-use webcraftdg\fractalCms\core\models\User;
+use fractalCms\core\models\User;
 use Yii;
 use Exception;
 

@@ -9,7 +9,7 @@
  * @package fractalCms\controllers\api
  */
 
-namespace webcraftdg\fractalCms\core\controllers\api;
+namespace fractalCms\core\controllers\api;
 
 use yii\filters\ContentNegotiator;
 use yii\rest\Controller;
