@@ -8,9 +8,9 @@
  * @package fractalCms\assets
  */
 
-namespace webcraftdg\fractalCms\core\assets;
+namespace fractalCms\core\assets;
 
-use webcraftdg\fractalCms\core\Module;
+use fractalCms\core\Module;
 use yii\caching\Cache;
 use yii\caching\FileDependency;
 use yii\helpers\Json;

@@ -8,10 +8,10 @@
  * @version XXX
  * @package fractalCms\models
  */
-namespace webcraftdg\fractalCms\core\models;
+namespace fractalCms\core\models;
 
 use Exception;
-use webcraftdg\fractalCms\core\components\Constant;
+use fractalCms\core\components\Constant;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;

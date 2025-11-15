@@ -9,13 +9,13 @@
  * @package views
  *
  * @var \yii\web\View $this
- * @var \webcraftdg\fractalCms\core\models\User $model
+ * @var \fractalCms\core\models\User $model
  * @var $nbSections
  * @var $nbArticles
  * @var $lastDate;
  */
 
-use webcraftdg\fractalCms\core\Module;
+use fractalCms\core\Module;
 
 $moduleInstance = Module::getInstance();
 ?>

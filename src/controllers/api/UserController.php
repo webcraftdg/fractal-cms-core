@@ -9,11 +9,11 @@
  * @package fractalCms\controllers\api
  */
 
-namespace webcraftdg\fractalCms\core\controllers\api;
+namespace fractalCms\core\controllers\api;
 
 use Exception;
-use webcraftdg\fractalCms\core\components\Constant;
-use webcraftdg\fractalCms\core\models\User;
+use fractalCms\core\components\Constant;
+use fractalCms\core\models\User;
 use Yii;
 use yii\db\Expression;
 use yii\filters\AccessControl;
