@@ -8,7 +8,7 @@
  * @version XXX
  * @package fractalCms\models
  */
-namespace FractalCMS\Core\models;
+namespace fractalCms\core\models;
 
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;

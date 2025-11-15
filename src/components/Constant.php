@@ -9,9 +9,9 @@
  * @package fractalCms\components
  */
 
-namespace  FractalCMS\Core\components;
+namespace  fractalCms\core\components;
 
-use FractalCMS\Core\models\User;
+use fractalCms\core\models\User;
 use Yii;
 use Exception;
 

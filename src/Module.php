@@ -9,16 +9,16 @@
  * @package fractalCms
  */
 
-namespace FractalCMS\Core;
+namespace fractalCms\core;
 
 use Exception;
-use FractalCMS\Core\components\Constant;
-use FractalCMS\Core\console\AdminController;
-use FractalCMS\Core\console\AuthorController;
-use FractalCMS\Core\console\RbacController;
-use FractalCMS\Core\interfaces\FractalCmsCoreInterface;
-use FractalCMS\Core\models\User;
-use FractalCMS\Core\helpers\Menu;
+use fractalCms\core\components\Constant;
+use fractalCms\core\console\AdminController;
+use fractalCms\core\console\AuthorController;
+use fractalCms\core\console\RbacController;
+use fractalCms\core\interfaces\FractalCmsCoreInterface;
+use fractalCms\core\models\User;
+use fractalCms\core\helpers\Menu;
 use Yii;
 use yii\base\BootstrapInterface;
 use yii\console\Application as ConsoleApplication;
@@ -81,7 +81,7 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
     public function bootstrap($app)
     {
         try {
-            Yii::setAlias('@FractalCMS', __DIR__);
+            Yii::setAlias('@fractalCms/core', __DIR__);
             $app->setComponents([
                 'user' => [
                     'class' => WebUser::class,
@@ -150,9 +150,9 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
             if (isset($app->controllerMap['migrate']) === true) {
                 //Add migrations namespace
                 if (isset($app->controllerMap['migrate']['migrationNamespaces']) === true) {
-                    $app->controllerMap['migrate']['migrationNamespaces'][] = 'FractalCMS\Core\migrations';
+                    $app->controllerMap['migrate']['migrationNamespaces'][] = 'fractalCms\core\migrations';
                 } else {
-                    $app->controllerMap['migrate']['migrationNamespaces'] = ['FractalCMS\Core\migrations'];
+                    $app->controllerMap['migrate']['migrationNamespaces'] = ['fractalCms\core\migrations'];
                 }
                 //Add rbac
                 if (isset($app->controllerMap['migrate']['migrationPath']) === true) {

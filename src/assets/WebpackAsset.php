@@ -8,9 +8,9 @@
  * @package fractalCms\assets
  */
 
-namespace FractalCMS\Core\assets;
+namespace fractalCms\core\assets;
 
-use FractalCMS\Core\Module;
+use fractalCms\core\Module;
 use yii\caching\Cache;
 use yii\caching\FileDependency;
 use yii\helpers\Json;
@@ -52,7 +52,7 @@ class WebpackAsset extends AssetBundle
     /**
      * @inheritdoc
      */
-    public $webpackPath = '@FractalCMS/assets/webpack';
+    public $webpackPath = '@fractalCms/core/assets/webpack';
 
     /**
      * @inheritdoc

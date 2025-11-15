@@ -10,9 +10,9 @@
  *
  */
 
-namespace FractalCMS\Core\controllers;
+namespace fractalCms\core\controllers;
 
-use FractalCMS\Core\models\User;
+use fractalCms\core\models\User;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use Exception;

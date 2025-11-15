@@ -9,7 +9,7 @@
  * @package fractalCms\assets
  */
 
-namespace FractalCMS\Core\assets;
+namespace fractalCms\core\assets;
 
 use yii\web\AssetBundle;
 use yii\web\View;
@@ -25,7 +25,7 @@ class StaticAsset extends AssetBundle
     /**
      * @inheritdoc
      */
-    public $sourcePath = '@FractalCMS/assets/static';
+    public $sourcePath = '@fractalCms/core/assets/static';
 
     /**
      * @inheritdoc
