@@ -48,7 +48,7 @@ use yii\helpers\Url;
                 $classes = ['row align-items-center  p-1 border mt-1'];
                 $classes[] = 'border-primary';
 
-             echo Html::beginTag('div', ['class' => implode(' ', $classes), 'cms-list-line' => $model->id]);
+             echo Html::beginTag('div', ['class' => implode(' ', $classes), 'fractal-cms-core-list-line' => $model->id]);
                 $className = [];
                 $className[] = 'col-sm-3';
                 echo Html::tag('div', ucfirst($model->group), ['class' => implode(' ', $className)]);

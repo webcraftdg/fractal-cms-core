@@ -101,7 +101,7 @@ use fractalCms\core\components\Constant;
                         foreach ($model->authRules as $nameMain => $item):
                     ?>
                                     <?php
-                                    echo Html::beginTag('div', ['class' => 'card col-sm-6 p-0', 'cms-check-rules' => '']);
+                                    echo Html::beginTag('div', ['class' => 'card col-sm-6 p-0', 'fractal-cms-core-check-rules' => '']);
                                         echo Html::beginTag('div', ['class' => 'card-header']);
                                     ?>
                                     <div class="form-check form-switch form-check-reverse">

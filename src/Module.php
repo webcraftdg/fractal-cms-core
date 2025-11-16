@@ -39,45 +39,7 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
     public string $name = 'FractalCMS';
     public string $commandNameSpace = 'fractalCms:';
 
-    private string $contextId = 'cms';
-    private static array $routeRules = [
-        [
-            'pattern' =>'tableau-de-bord',
-            'route' => 'default/index',
-        ],
-        [
-            'pattern' => 'gestion-des-utilisateurs',
-            'route' => 'user/index',
-        ],
-        [
-            'pattern' => 'connexion',
-            'route' => 'authentification/login',
-        ],
-        [
-            'pattern' => 'deconnexion',
-            'route' => 'authentication/logout',
-        ],
-        [
-            'pattern' => 'utilisateurs/<id:([^/]+)>/editer',
-            'route' => 'user/update',
-        ],
-        [
-            'pattern' => 'utilisateurs/<id:([^/]+)>/supprimer',
-            'route' => 'user-api/delete',
-        ],
-        [
-            'pattern' => 'utilisateurs/<id:([^/]+)>/activer-desactiver',
-            'route' => 'user-api/activate',
-        ],
-        [
-            'pattern' => 'utilisateurs/creer',
-            'route' => 'user/create',
-        ],
-        [
-            'pattern' => 'utilisateurs/liste',
-            'route' => 'user/index',
-        ],
-    ];
+    private string $contextId = 'fractal-cms-core';
     public function bootstrap($app)
     {
         try {
@@ -122,15 +84,9 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
     public function configWebApp(WebApplication $app) : void
     {
         try {
-            $app->getUrlManager()->addRules(
-                [
-                    new GroupUrlRule([
-                        'prefix' => Module::getInstance()->id,
-                        'routePrefix' => Module::getInstance()->id,
-                        'rules' => static::$routeRules
-                    ]),
-                ], true);            //adding route here
-        }catch (Exception $e) {
+            $routes = $this->getAllRoutes();
+            $app->getUrlManager()->addRules($routes, false);  //adding route here
+        } catch (Exception $e) {
             Yii::error($e->getMessage(), __METHOD__);
             throw  $e;
         }
@@ -193,14 +149,111 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
     }
 
     /**
+     * Set context id
+     *
+     * @param $id
+     * @return void
+     * @throws Exception
+     */
+    public function setContextId($id) : void
+    {
+        try {
+            $this->contextId = $id;
+        }catch (Exception $e) {
+            Yii::error($e->getMessage(), __METHOD__);
+            throw  $e;
+        }
+    }
+
+    /**
+     * Get context routes
+     *
+     * @return array[]
+     */
+    public function getRoutes(): array
+    {
+        return [
+            'tableau-de-bord' => $this->id.'/default/index',
+            'gestion-des-utilisateurs' => $this->id.'/user/index',
+            'connexion' => $this->id.'/authentification/login',
+            'deconnexion' => $this->id.'/authentication/logout',
+            'utilisateurs/<id:([^/]+)>/editer'=> $this->id.'/user/update',
+            'utilisateurs/<id:([^/]+)>/supprimer' => $this->id.'/user-api/delete',
+            'utilisateurs/<id:([^/]+)>/activer-desactiver' => $this->id.'/user-api/activate',
+            'utilisateurs/creer' => $this->id.'/user/create',
+            'utilisateurs/liste' => $this->id.'/user/index',
+            'parametres/liste' => $this->id.'/parameter/index',
+            'parametres/creer' => $this->id.'/parameter/create',
+            'parametres/<id:([^/]+)>/editer' => $this->id.'/parameter/update',
+            'parametres/<id:([^/]+)>/supprimer' => $this->id.'/api/parameter/delete',
+        ];
+        /*
+         *       return [
+            [
+                'pattern' =>'tableau-de-bord',
+                'route' => $this->id.'/default/index',
+            ],
+            [
+                'pattern' => 'gestion-des-utilisateurs',
+                'route' => $this->id.'/user/index',
+            ],
+            [
+                'pattern' => 'connexion',
+                'route' => $this->id.'/authentification/login',
+            ],
+            [
+                'pattern' => 'deconnexion',
+                'route' => $this->id.'/authentication/logout',
+            ],
+            [
+                'pattern' => 'utilisateurs/<id:([^/]+)>/editer',
+                'route' => $this->id.'/user/update',
+            ],
+            [
+                'pattern' => 'utilisateurs/<id:([^/]+)>/supprimer',
+                'route' => $this->id.'/user-api/delete',
+            ],
+            [
+                'pattern' => 'utilisateurs/<id:([^/]+)>/activer-desactiver',
+                'route' => $this->id.'/user-api/activate',
+            ],
+            [
+                'pattern' => 'utilisateurs/creer',
+                'route' => $this->id.'/user/create',
+            ],
+            [
+                'pattern' => 'utilisateurs/liste',
+                'route' => $this->id.'/user/index',
+            ],
+            [
+                'pattern' => 'parametres/liste',
+                'route' => $this->id.'/parameter/index',
+            ],
+            [
+                'pattern' => 'parametres/creer',
+                'route' => $this->id.'/parameter/create',
+            ],
+            [
+                'pattern' => 'parametres/<id:([^/]+)>/editer',
+                'route' => $this->id.'/parameter/update',
+            ],
+            [
+                'pattern' => 'parametres/<id:([^/]+)>/supprimer',
+                'route' => $this->id.'/api/parameter/delete',
+            ],
+        ];
+         */
+    }
+
+    /**
      * Return context Permission
      * @return array
      */
     public function getPermissions(): array
     {
         return [
-            Constant::PERMISSION_MAIN_USER,
-            Constant::PERMISSION_MAIN_PARAMETER,
+            Constant::PERMISSION_MAIN_USER => 'Utilisateur',
+            Constant::PERMISSION_MAIN_PARAMETER => 'Configuration Paramètres',
         ];
     }
 
@@ -208,12 +261,6 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
     {
         try {
             Yii::debug(Constant::TRACE_DEBUG, __METHOD__, __METHOD__);
-            $configuration = [
-                'title' => 'Configuration',
-                'url' => null,
-                'optionsClass' => [],
-                'children' => []
-            ];
             $admins = [
                 'title' => 'Administration',
                 'url' => null,
@@ -241,10 +288,10 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
                 if (Yii::$app->controller->id == 'parameter') {
                     $optionsClass[] = 'text-primary fw-bold';
                 }
-                if(empty($configuration['optionsClass']) === true) {
-                    $configuration['optionsClass'] = $optionsClass;
+                if(empty($admins['optionsClass']) === true) {
+                    $admins['optionsClass'] = $optionsClass;
                 }
-                $configuration['children'][] = [
+                $admins['children'][] = [
                     'title' => 'Paramètres',
                     'url' => Url::to(['parameter/index']),
                     'optionsClass' => $optionsClass,
@@ -254,9 +301,6 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
             $data = [];
             if (empty($admins['children']) === false) {
                 $data[] = $admins;
-            }
-            if (empty($configuration['children']) === false) {
-                $data[] = $configuration;
             }
             return $data;
         } catch (Exception $e) {
@@ -275,9 +319,11 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
     {
         try {
             $permissions = [];
-            $modules = Yii::$app->getModules();
-            foreach ($modules as $module) {
-                if ($module instanceof FractalCmsCoreInterface) {
+            $modules = Yii::$app->modules;
+            foreach ($modules as $id => $module) {
+                $module = Yii::$app->getModule($id);
+                if ($module instanceof FractalCmsCoreInterface && $module->id !== $this->id) {
+                    $module->setContextId($id);
                     $permissions = ArrayHelper::merge($permissions, $module->getPermissions());
                 }
             }
@@ -299,13 +345,40 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
     {
         try {
             $menus = $this->getMenu();
-            $modules = Yii::$app->getModules();
-            foreach ($modules as $module) {
-                if ($module instanceof FractalCmsCoreInterface) {
-                    $permissions = ArrayHelper::merge($menus, $module->getMenu());
+            $modules = Yii::$app->modules;
+            foreach ($modules as $id => $module) {
+                $module = Yii::$app->getModule($id);
+                if ($module instanceof FractalCmsCoreInterface && $module->id !== $this->id) {
+                    $module->setContextId($id);
+                    $menus = array_merge_recursive($menus, $module->getMenu());
                 }
             }
             return $menus;
+        }catch (Exception $e) {
+            Yii::error($e->getMessage(), __METHOD__);
+            throw  $e;
+        }
+    }
+
+    /**
+     * Get routes of all module
+     *
+     * @return array[]
+     * @throws Exception
+     */
+    public function getAllRoutes() : array
+    {
+        try {
+            $routes = $this->getRoutes();
+            $modules = Yii::$app->modules;
+            foreach ($modules as $id => $module) {
+                $module = Yii::$app->getModule($id);
+                if ($module instanceof FractalCmsCoreInterface && $module->id !== $this->id) {
+                    $module->setContextId($id);
+                    $routes = ArrayHelper::merge($routes, $module->getRoutes());
+                }
+            }
+            return $routes;
         }catch (Exception $e) {
             Yii::error($e->getMessage(), __METHOD__);
             throw  $e;

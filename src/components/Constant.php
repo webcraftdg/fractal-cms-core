@@ -12,6 +12,7 @@
 namespace  fractalCms\core\components;
 
 use fractalCms\core\models\User;
+use fractalCms\core\Module;
 use Yii;
 use Exception;
 
@@ -31,11 +32,6 @@ class Constant
     const ROLE_AUTHOR = 'AUTHOR';
     const TRACE_DEBUG = 'debug';
 
-    public static $main = [
-        Constant::PERMISSION_MAIN_USER => 'Utilisateur',
-        Constant::PERMISSION_MAIN_PARAMETER => 'Configuration Paramètres',
-    ];
-
     public static $actions = [
         Constant::PERMISSION_ACTION_CREATE => 'Créer',
         Constant::PERMISSION_ACTION_UPDATE => 'Mettre à jour',
@@ -50,7 +46,7 @@ class Constant
             $auth = Yii::$app->authManager;
             $rules = [];
 
-            foreach (self::$main as $permissionMain => $title) {
+            foreach (Module::getInstance()->getAllPermissions() as $permissionMain => $title) {
                 $permissionManageName = $permissionMain.Constant::PERMISSION_ACTION_MANAGE;
                 $permissionManageTitle = $title.' Gestion';
                 $manageRules = [
