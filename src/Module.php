@@ -32,7 +32,7 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
 {
 
 
-    public $layoutPath = '@fractalCms/views/layouts';
+    public $layoutPath = '@fractalCms/core/views/layouts';
     public $layout = 'main';
     public $defaultRoute = 'default/index';
     public $version = 'v1.0.0';
@@ -173,76 +173,20 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
     public function getRoutes(): array
     {
         return [
-            'tableau-de-bord' => $this->id.'/default/index',
-            'gestion-des-utilisateurs' => $this->id.'/user/index',
-            'connexion' => $this->id.'/authentification/login',
-            'deconnexion' => $this->id.'/authentication/logout',
-            'utilisateurs/<id:([^/]+)>/editer'=> $this->id.'/user/update',
-            'utilisateurs/<id:([^/]+)>/supprimer' => $this->id.'/user-api/delete',
-            'utilisateurs/<id:([^/]+)>/activer-desactiver' => $this->id.'/user-api/activate',
-            'utilisateurs/creer' => $this->id.'/user/create',
-            'utilisateurs/liste' => $this->id.'/user/index',
-            'parametres/liste' => $this->id.'/parameter/index',
-            'parametres/creer' => $this->id.'/parameter/create',
-            'parametres/<id:([^/]+)>/editer' => $this->id.'/parameter/update',
-            'parametres/<id:([^/]+)>/supprimer' => $this->id.'/api/parameter/delete',
+            $this->id.'/tableau-de-bord' => $this->id.'/default/index',
+            $this->id.'/gestion-des-utilisateurs' => $this->id.'/user/index',
+            $this->id.'/connexion' => $this->id.'/authentification/login',
+            $this->id.'/deconnexion' => $this->id.'/authentication/logout',
+            $this->id.'/utilisateurs/<id:([^/]+)>/editer'=> $this->id.'/user/update',
+            $this->id.'/utilisateurs/<id:([^/]+)>/supprimer' => $this->id.'/user-api/delete',
+            $this->id.'/utilisateurs/<id:([^/]+)>/activer-desactiver' => $this->id.'/user-api/activate',
+            $this->id.'/utilisateurs/creer' => $this->id.'/user/create',
+            $this->id.'/utilisateurs/liste' => $this->id.'/user/index',
+            $this->id.'/parametres/liste' => $this->id.'/parameter/index',
+            $this->id.'/parametres/creer' => $this->id.'/parameter/create',
+            $this->id.'/parametres/<id:([^/]+)>/editer' => $this->id.'/parameter/update',
+            $this->id.'/parametres/<id:([^/]+)>/supprimer' => $this->id.'/api/parameter/delete',
         ];
-        /*
-         *       return [
-            [
-                'pattern' =>'tableau-de-bord',
-                'route' => $this->id.'/default/index',
-            ],
-            [
-                'pattern' => 'gestion-des-utilisateurs',
-                'route' => $this->id.'/user/index',
-            ],
-            [
-                'pattern' => 'connexion',
-                'route' => $this->id.'/authentification/login',
-            ],
-            [
-                'pattern' => 'deconnexion',
-                'route' => $this->id.'/authentication/logout',
-            ],
-            [
-                'pattern' => 'utilisateurs/<id:([^/]+)>/editer',
-                'route' => $this->id.'/user/update',
-            ],
-            [
-                'pattern' => 'utilisateurs/<id:([^/]+)>/supprimer',
-                'route' => $this->id.'/user-api/delete',
-            ],
-            [
-                'pattern' => 'utilisateurs/<id:([^/]+)>/activer-desactiver',
-                'route' => $this->id.'/user-api/activate',
-            ],
-            [
-                'pattern' => 'utilisateurs/creer',
-                'route' => $this->id.'/user/create',
-            ],
-            [
-                'pattern' => 'utilisateurs/liste',
-                'route' => $this->id.'/user/index',
-            ],
-            [
-                'pattern' => 'parametres/liste',
-                'route' => $this->id.'/parameter/index',
-            ],
-            [
-                'pattern' => 'parametres/creer',
-                'route' => $this->id.'/parameter/create',
-            ],
-            [
-                'pattern' => 'parametres/<id:([^/]+)>/editer',
-                'route' => $this->id.'/parameter/update',
-            ],
-            [
-                'pattern' => 'parametres/<id:([^/]+)>/supprimer',
-                'route' => $this->id.'/api/parameter/delete',
-            ],
-        ];
-         */
     }
 
     /**
@@ -277,7 +221,7 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
                 }
                 $admins['children'][] =  [
                     'title' => 'Utilisateurs',
-                    'url' => Url::to(['user/index']),
+                    'url' => Url::to(['/'.$this->id.'/user/index']),
                     'optionsClass' => $optionsClass,
                     'children' => [],
                 ];
@@ -293,7 +237,7 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
                 }
                 $admins['children'][] = [
                     'title' => 'Paramètres',
-                    'url' => Url::to(['parameter/index']),
+                    'url' => Url::to(['/'.$this->id.'/parameter/index']),
                     'optionsClass' => $optionsClass,
                     'children' => [],
                 ];
