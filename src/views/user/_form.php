@@ -12,7 +12,7 @@
  * @var \fractalCms\core\models\User $model
  */
 
-use yii\helpers\Html;
+use fractalCms\core\helpers\Html;
 use fractalCms\core\components\Constant;
 ?>
 <div class="row">

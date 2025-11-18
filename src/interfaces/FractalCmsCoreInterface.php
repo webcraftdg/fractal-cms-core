@@ -12,6 +12,8 @@
 namespace fractalCms\core\interfaces;
 
 
+use fractalCms\core\models\Data;
+
 interface FractalCmsCoreInterface
 {
     /**
@@ -48,4 +50,11 @@ interface FractalCmsCoreInterface
      * @return string
      */
     public function setContextId(string $id):void;
+
+    /**
+     * get data from other Modules
+     *
+     * @return Data
+     */
+    public function getData() : Data;
 }

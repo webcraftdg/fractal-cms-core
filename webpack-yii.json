@@ -2,7 +2,15 @@
     "sourceDir": "./src/assets/webpack",
     "entry": {
         "main": "./scss/main.scss",
-        "app": ["./startup.ts"]
+        "app": ["./startup.ts"],
+        "core": "../sdk/sdk.ts"
+    },
+    "output": {
+        "library": {
+            "name": "FractalCMSCore",
+            "type": "umd"
+        },
+        "globalObject": "this"
     },
     "externals": {
     },
@@ -10,7 +18,7 @@
     },
     "subDirectories": {
         "sources": "src",
-        "dist": "build"
+        "dist": "dist"
     },
     "assets": {
         "styles": "css",

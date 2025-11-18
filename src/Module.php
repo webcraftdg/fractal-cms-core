@@ -17,6 +17,7 @@ use fractalCms\core\console\AdminController;
 use fractalCms\core\console\AuthorController;
 use fractalCms\core\console\RbacController;
 use fractalCms\core\interfaces\FractalCmsCoreInterface;
+use fractalCms\core\models\Data;
 use fractalCms\core\models\User;
 use fractalCms\core\helpers\Menu;
 use Yii;
@@ -190,6 +191,15 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
     }
 
     /**
+     * @return Data
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getData(): Data
+    {
+        return Yii::createObject(Data::class);
+    }
+
+    /**
      * Return context Permission
      * @return array
      */
@@ -253,6 +263,7 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
         }
     }
 
+
     /**
      * Get all persmission
      *
@@ -262,7 +273,7 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
     public function getAllPermissions() : array
     {
         try {
-            $permissions = [];
+            $permissions = $this->getPermissions();
             $modules = Yii::$app->modules;
             foreach ($modules as $id => $module) {
                 $module = Yii::$app->getModule($id);
