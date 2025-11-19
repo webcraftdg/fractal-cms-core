@@ -11,8 +11,8 @@
 namespace fractalCms\core\console;
 
 use Exception;
-use fractalCms\components\Constant;
-use fractalCms\models\User;
+use fractalCms\core\components\Constant;
+use fractalCms\core\models\User;
 use Yii;
 use yii\console\Controller;
 use yii\console\ExitCode;
