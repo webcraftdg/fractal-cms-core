@@ -12,10 +12,13 @@
 namespace fractalCms\core\interfaces;
 
 
-use fractalCms\core\models\Data;
-
 interface FractalCmsCoreInterface
 {
+    /**
+     * @return string
+     */
+    public function getName() : string;
+
     /**
      * Get permissions Rbac
      *
@@ -52,9 +55,9 @@ interface FractalCmsCoreInterface
     public function setContextId(string $id):void;
 
     /**
-     * get data from other Modules
+     * get informations from other Modules
      *
-     * @return Data
+     * @return array
      */
-    public function getData() : Data;
+    public function getInformations() : array;
 }

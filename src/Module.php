@@ -17,7 +17,6 @@ use fractalCms\core\console\AdminController;
 use fractalCms\core\console\AuthorController;
 use fractalCms\core\console\RbacController;
 use fractalCms\core\interfaces\FractalCmsCoreInterface;
-use fractalCms\core\models\Data;
 use fractalCms\core\models\User;
 use fractalCms\core\helpers\Menu;
 use Yii;
@@ -37,7 +36,7 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
     public $layout = 'main';
     public $defaultRoute = 'default/index';
     public $version = 'v1.0.0';
-    public string $name = 'FractalCMS';
+    public string $name = 'FractalCMS-Core';
     public string $commandNameSpace = 'fractalCms:';
 
     private string $contextId = 'fractal-cms-core';
@@ -191,12 +190,19 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
     }
 
     /**
-     * @return Data
-     * @throws \yii\base\InvalidConfigException
+     * @return string
      */
-    public function getData(): Data
+    public function getName(): string
     {
-        return Yii::createObject(Data::class);
+        return $this->name;
+    }
+
+    /**
+     * @return array
+     */
+    public function getInformations(): array
+    {
+        return [];
     }
 
     /**
@@ -334,6 +340,32 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
                 }
             }
             return $routes;
+        }catch (Exception $e) {
+            Yii::error($e->getMessage(), __METHOD__);
+            throw  $e;
+        }
+    }
+
+
+    /**
+     * Get all informations
+     *
+     * @return array[]
+     * @throws Exception
+     */
+    public function getAllInformations() : array
+    {
+        try {
+            $informations = [];
+            $modules = Yii::$app->modules;
+            foreach ($modules as $id => $module) {
+                $module = Yii::$app->getModule($id);
+                if ($module instanceof FractalCmsCoreInterface && $module->id !== $this->id) {
+                    $module->setContextId($id);
+                    $informations[$module->getName().' : vue d\'ensemble'] = $module->getInformations();
+                }
+            }
+            return $informations;
         }catch (Exception $e) {
             Yii::error($e->getMessage(), __METHOD__);
             throw  $e;
