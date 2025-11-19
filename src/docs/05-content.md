@@ -43,4 +43,4 @@ pas se connecter.
 
 La configuration des droits et permissions permet de restreindre l'accès à certaines fonctionnalités de FractalCMS.
 
-[<- Précédent](04-interface.md) |  [Accueil](index.md)
+[<- Précédent](04-interface.md) |   [Suivant ->](06-avance.md)

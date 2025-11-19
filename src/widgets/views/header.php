@@ -9,13 +9,13 @@
  * @package cms/widgets/views
  *
  * @var $this \yii\web\View
- * @var \fractalCms\models\User $identity
+ * @var \fractalCms\core\models\User $identity
  * @var string $logoutUrl
  */
 
-use fractalCms\assets\StaticAsset;
-use fractalCms\helpers\Html;
-use fractalCms\Module;
+use fractalCms\core\assets\StaticAsset;
+use yii\helpers\Html;
+use fractalCms\core\Module;
 
 $moduleInstance = Module::getInstance();
 $baseUrl = StaticAsset::register($this)->baseUrl;
@@ -32,7 +32,7 @@ $baseUrl = StaticAsset::register($this)->baseUrl;
         </div>
         <div class="col-sm-7">
             <?php
-                echo \fractalCms\widgets\Menu::widget();
+                echo \fractalCms\core\widgets\Menu::widget();
             ?>
         </div>
         <div class="col-sm-1">

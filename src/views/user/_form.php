@@ -9,11 +9,11 @@
  * @package views
  *
  * @var \yii\web\View $this
- * @var \FractalCMS\Core\models\User $model
+ * @var \fractalCms\core\models\User $model
  */
 
-use yii\helpers\Html;
-use FractalCMS\Core\components\Constant;
+use fractalCms\core\helpers\Html;
+use fractalCms\core\components\Constant;
 ?>
 <div class="row">
     <div class="col-sm-12">
@@ -101,7 +101,7 @@ use FractalCMS\Core\components\Constant;
                         foreach ($model->authRules as $nameMain => $item):
                     ?>
                                     <?php
-                                    echo Html::beginTag('div', ['class' => 'card col-sm-6 p-0', 'cms-check-rules' => '']);
+                                    echo Html::beginTag('div', ['class' => 'card col-sm-6 p-0', 'fractal-cms-core-check-rules' => '']);
                                         echo Html::beginTag('div', ['class' => 'card-header']);
                                     ?>
                                     <div class="form-check form-switch form-check-reverse">

@@ -8,10 +8,10 @@
  * @version XXX
  * @package fractalCms\models
  */
-namespace FractalCMS\Core\models;
+namespace fractalCms\core\models;
 
 use Exception;
-use FractalCMS\Core\components\Constant;
+use fractalCms\core\components\Constant;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
@@ -107,7 +107,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['token'], 'unique', 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE, self::SCENARIO_CREATE_ADMIN]],
             [['email', 'tmpPassword'], 'required', 'on' => [self::SCENARIO_LOGIN]],
             [['tmpCheckPassword', 'tmpPassword'], 'required', 'on' => [self::SCENARIO_MOT_PASSE], 'message' => 'Le nouveau mot de passe et la validation sont requises'],
-            [[ 'tmpPassword'], 'match', 'pattern' => '/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,16}$/', 'on' => [self::SCENARIO_MOT_PASSE, self::SCENARIO_CREATE_ADMIN], 'message' => 'Mot de passe : format invalide'],
+            [[ 'tmpPassword'], 'match', 'pattern' => '/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,16}$/', 'on' => [self::SCENARIO_MOT_PASSE, self::SCENARIO_CREATE_ADMIN, self::SCENARIO_CREATE], 'message' => 'Mot de passe : format invalide'],
             [[ 'tmpPassword'], 'compare', 'compareAttribute' => 'tmpCheckPassword', 'on' => [self::SCENARIO_MOT_PASSE, self::SCENARIO_CREATE], 'message' => 'les mots de passe ne correspondent pas'],
         ];
     }

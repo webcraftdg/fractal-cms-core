@@ -11,7 +11,7 @@ export class ConfigService {
     public getApiBaseUrl()
     {
         if (!this.apiBaseUrl) {
-            this.apiBaseUrl = ((window as any).apiBaseUrl) ? (window as any).apiBaseUrl : 'cms';
+            this.apiBaseUrl = ((window as any).apiBaseUrl) ? (window as any).apiBaseUrl : '/fractal-cms';
         }
         return this.apiBaseUrl;
     }

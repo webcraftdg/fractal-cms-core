@@ -1,7 +1,7 @@
 import {customAttribute, ILogger, INode, resolve, IPlatform, IEventAggregator} from "aurelia";
 import {ApiServices} from "../services/api-services";
 
-@customAttribute('cms-menu')
+@customAttribute('fractal-cms-core-menu')
 export class Menu {
 
     private actionButtons:NodeList;

@@ -1,6 +1,6 @@
 import {bindable, customAttribute, ILogger, INode, resolve} from "aurelia";
 
-@customAttribute('cms-check-rules')
+@customAttribute('fractal-cms-core-check-rules')
 export class CheckRules {
 
     @bindable() id: number;

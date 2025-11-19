@@ -10,7 +10,7 @@
  *
  * @var \yii\db\ActiveQuery $modelsQuery
  */
-use FractalCMS\Core\components\Constant;
+use fractalCms\core\components\Constant;
 use yii\helpers\Html;
 use yii\helpers\Url;
 ?>
@@ -43,12 +43,12 @@ use yii\helpers\Url;
 </div>
 <div class="row m-3">
         <?php
-            /** @var \FractalCMS\Core\models\Parameter $model */
+            /** @var \fractalCms\core\models\Parameter $model */
             foreach ($modelsQuery->each() as $model) {
                 $classes = ['row align-items-center  p-1 border mt-1'];
                 $classes[] = 'border-primary';
 
-             echo Html::beginTag('div', ['class' => implode(' ', $classes), 'cms-list-line' => $model->id]);
+             echo Html::beginTag('div', ['class' => implode(' ', $classes), 'fractal-cms-core-list-line' => $model->id]);
                 $className = [];
                 $className[] = 'col-sm-3';
                 echo Html::tag('div', ucfirst($model->group), ['class' => implode(' ', $className)]);

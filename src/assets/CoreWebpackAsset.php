@@ -1,6 +1,6 @@
 <?php
 /**
- * bootstrap.php
+ * CoreWebpackAsset.php
  *
  * PHP Version 8.2+
  *
@@ -26,7 +26,7 @@ use Exception;
  * @author David Ghyse <davidg@webcraftdg.fr>
  * @package app\assets
  */
-class WebpackAsset extends AssetBundle
+class CoreWebpackAsset extends AssetBundle
 {
 
     /**
@@ -63,22 +63,20 @@ class WebpackAsset extends AssetBundle
      * @inheritdoc
      */
     public $webpackBundles = [
-        'main',
-        'app'
+        'core',
     ];
 
     /**
      * @var array list of bundles which are css only
      */
     public $cssOnly = [
-        'main',
     ];
 
     /**
      * @var array list of bundles which are js only
      */
     public $jsOnly = [
-        'app',
+        'core',
     ];
 
     public $js = [
@@ -102,19 +100,6 @@ class WebpackAsset extends AssetBundle
         'position' => View::POS_HEAD,
         'defer' => 'defer',
     ];
-
-    /**
-     * @inheritdoc
-     */
-    public static function register($view)
-    {
-        /* @var $view View */
-        $bundle = parent::register($view);
-        $view->registerJsVar('webpackBaseUrl', $bundle->baseUrl.'/');
-        $view->registerJsVar('apiBaseUrl', Url::to(['/']).Module::getInstance()->id);
-
-        return $bundle;
-    }
 
     /**
      * @inheritdoc

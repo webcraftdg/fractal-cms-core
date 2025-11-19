@@ -10,7 +10,7 @@
  *
  * @var \fractalCms\models\User[] $models
  */
-use FractalCMS\Core\components\Constant;
+use fractalCms\core\components\Constant;
 use yii\helpers\Html;
 use yii\helpers\Url;
 ?>
@@ -53,7 +53,7 @@ use yii\helpers\Url;
                 } else {
                     $classes[] = 'border-primary';
                 }
-             echo Html::beginTag('div', ['class' => implode(' ', $classes), 'cms-list-line' => $model->id]);
+             echo Html::beginTag('div', ['class' => implode(' ', $classes), 'fractal-cms-core-list-line' => $model->id]);
                  echo Html::tag('div', ucfirst($model->firstname), ['class' => 'col']);
                  echo Html::tag('div', ucfirst($model->lastname), ['class' => 'col']);
                  echo Html::beginTag('div', ['class' => 'col-sm-2']);

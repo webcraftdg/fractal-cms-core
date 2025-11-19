@@ -1,15 +1,12 @@
 {
-  "manifest": {
-    "js": "js/manifest.4974b82f.js"
-  },
   "main": {
-    "css": "css/main.df13e415.css",
-    "js": "js/main.df13e415.js"
+    "css": "css/main.d3a09a8b.css",
+    "js": "js/main.d3a09a8b.js"
   },
   "app": {
-    "js": "js/app.14c667d7.js"
+    "js": "js/app.27431fca.js"
   },
-  "vendors": {
-    "js": "js/vendors.650b6ff7.js"
+  "core": {
+    "js": "js/core.d54dfc10.js"
   }
 }

@@ -1,7 +1,7 @@
 import {bindable, customAttribute, IEventAggregator, ILogger, INode, IPlatform, resolve} from "aurelia";
 import {ApiServices} from "../services/api-services";
 
-@customAttribute('cms-list-line')
+@customAttribute('fractal-cms-core-list-line')
 export class ListLine {
 
     @bindable() id: number;

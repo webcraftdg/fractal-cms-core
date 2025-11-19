@@ -9,11 +9,11 @@
  * @package fractalCms\controllers
  */
 
-namespace FractalCMS\Core\controllers;
+namespace fractalCms\core\controllers;
 
 use Exception;
-use FractalCMS\Core\components\Constant;
-use FractalCMS\Core\models\Parameter;
+use fractalCms\core\components\Constant;
+use fractalCms\core\models\Parameter;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -104,7 +104,7 @@ class ParameterController extends Controller
                 if ($model->validate() === true) {
                     $model->save();
                     $model->refresh();
-                    $response = $this->redirect(['parameter/update', 'id' => $model->id]);
+                    $response = $this->redirect(['parameter/index']);
                 }
             }
             if ($response === null) {
@@ -131,6 +131,7 @@ class ParameterController extends Controller
     public function actionUpdate($id = null) : string | Response
     {
         try {
+            $response = null;
             //find menu
             $model = Parameter::findOne(['id' => $id]);
             if ($model === null) {
@@ -144,12 +145,15 @@ class ParameterController extends Controller
                 if ($model->validate() === true) {
                     $model->save();
                     $model->refresh();
+                    $response = $this->redirect(['parameter/index']);
                 }
             }
-
-            return $this->render('manage', [
-                'model' => $model,
-            ]);
+            if ($response === null) {
+                $response =  $this->render('manage', [
+                    'model' => $model,
+                ]);
+            }
+            return $response;
         } catch (Exception $e)  {
             Yii::error($e->getMessage(), __METHOD__);
             throw  $e;

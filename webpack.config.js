@@ -183,40 +183,8 @@ var webpackConfig = {
     ]
   },
   optimization: {
-    removeEmptyChunks: true,
-    runtimeChunk: {
-      name: "manifest"
-    },
-    splitChunks: {
-      hidePathInfo: true, // prevents the path from being used in the filename when using maxSize
-      chunks: 'initial',
-      cacheGroups: {
-        default: false,
-        vendors: { // picks up everything from node_modules as long as the sum of node modules is larger than minSize
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          priority: 19,
-          enforce: true, // causes maxInitialRequests to be ignored, minSize still respected if specified in cacheGroup
-          minSize: 1000 // use the default minSize
-        },
-        vendorsAsync: { // vendors async chunk, remaining asynchronously used node modules as single chunk file
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors.async',
-          chunks: 'async',
-          priority: 9,
-          reuseExistingChunk: true,
-          minSize: 1000  // use smaller minSize to avoid too much potential bundle bloat due to module duplication.
-        },
-        commonsAsync: { // commons async chunk, remaining asynchronously used modules as single chunk file
-          name: 'commons.async',
-          minChunks: 2, // Minimum number of chunks that must share a module before splitting
-          chunks: 'async',
-          priority: 0,
-          reuseExistingChunk: true,
-          minSize: 1000  // use smaller minSize to avoid too much potential bundle bloat due to module duplication.
-        }
-      }
-    }
+    runtimeChunk: false,
+    splitChunks: false
   },
   resolve: {
     alias: {},

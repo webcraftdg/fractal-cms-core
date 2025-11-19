@@ -10,9 +10,10 @@
  *
  */
 
-namespace FractalCMS\Core\controllers;
+namespace fractalCms\core\controllers;
 
-use FractalCMS\Core\models\User;
+use fractalCms\core\models\User;
+use fractalCms\core\Module;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use Exception;
@@ -55,8 +56,10 @@ class DefaultController extends Controller
         try {
             /** @var User $user */
             $user = Yii::$app->user->getIdentity();
+            $informations = Module::getInstance()->getAllInformations();
             return $this->render('index', [
                 'model' => $user,
+                'informations' => $informations
             ]);
         } catch (Exception $e)  {
             Yii::error($e->getMessage(), __METHOD__);

@@ -9,16 +9,16 @@
  * @package fractalCms
  */
 
-namespace FractalCMS\Core;
+namespace fractalCms\core;
 
 use Exception;
-use FractalCMS\Core\components\Constant;
-use FractalCMS\Core\console\AdminController;
-use FractalCMS\Core\console\AuthorController;
-use FractalCMS\Core\console\RbacController;
-use FractalCMS\Core\interfaces\FractalCmsCoreInterface;
-use FractalCMS\Core\models\User;
-use FractalCMS\Core\helpers\Menu;
+use fractalCms\core\components\Constant;
+use fractalCms\core\console\AdminController;
+use fractalCms\core\console\AuthorController;
+use fractalCms\core\console\RbacController;
+use fractalCms\core\interfaces\FractalCmsCoreInterface;
+use fractalCms\core\models\User;
+use fractalCms\core\helpers\Menu;
 use Yii;
 use yii\base\BootstrapInterface;
 use yii\console\Application as ConsoleApplication;
@@ -32,56 +32,18 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
 {
 
 
-    public $layoutPath = '@fractalCms/views/layouts';
+    public $layoutPath = '@fractalCms/core/views/layouts';
     public $layout = 'main';
     public $defaultRoute = 'default/index';
     public $version = 'v1.0.0';
-    public string $name = 'FractalCMS';
+    public string $name = 'FractalCMS-Core';
     public string $commandNameSpace = 'fractalCms:';
 
-    private string $contextId = 'cms';
-    private static array $routeRules = [
-        [
-            'pattern' =>'tableau-de-bord',
-            'route' => 'default/index',
-        ],
-        [
-            'pattern' => 'gestion-des-utilisateurs',
-            'route' => 'user/index',
-        ],
-        [
-            'pattern' => 'connexion',
-            'route' => 'authentification/login',
-        ],
-        [
-            'pattern' => 'deconnexion',
-            'route' => 'authentication/logout',
-        ],
-        [
-            'pattern' => 'utilisateurs/<id:([^/]+)>/editer',
-            'route' => 'user/update',
-        ],
-        [
-            'pattern' => 'utilisateurs/<id:([^/]+)>/supprimer',
-            'route' => 'user-api/delete',
-        ],
-        [
-            'pattern' => 'utilisateurs/<id:([^/]+)>/activer-desactiver',
-            'route' => 'user-api/activate',
-        ],
-        [
-            'pattern' => 'utilisateurs/creer',
-            'route' => 'user/create',
-        ],
-        [
-            'pattern' => 'utilisateurs/liste',
-            'route' => 'user/index',
-        ],
-    ];
+    private string $contextId = 'fractal-cms-core';
     public function bootstrap($app)
     {
         try {
-            Yii::setAlias('@FractalCMS', __DIR__);
+            Yii::setAlias('@fractalCms/core', __DIR__);
             $app->setComponents([
                 'user' => [
                     'class' => WebUser::class,
@@ -122,15 +84,9 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
     public function configWebApp(WebApplication $app) : void
     {
         try {
-            $app->getUrlManager()->addRules(
-                [
-                    new GroupUrlRule([
-                        'prefix' => Module::getInstance()->id,
-                        'routePrefix' => Module::getInstance()->id,
-                        'rules' => static::$routeRules
-                    ]),
-                ], true);            //adding route here
-        }catch (Exception $e) {
+            $routes = $this->getAllRoutes();
+            $app->getUrlManager()->addRules($routes, false);  //adding route here
+        } catch (Exception $e) {
             Yii::error($e->getMessage(), __METHOD__);
             throw  $e;
         }
@@ -150,9 +106,9 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
             if (isset($app->controllerMap['migrate']) === true) {
                 //Add migrations namespace
                 if (isset($app->controllerMap['migrate']['migrationNamespaces']) === true) {
-                    $app->controllerMap['migrate']['migrationNamespaces'][] = 'FractalCMS\Core\migrations';
+                    $app->controllerMap['migrate']['migrationNamespaces'][] = 'fractalCms\core\migrations';
                 } else {
-                    $app->controllerMap['migrate']['migrationNamespaces'] = ['FractalCMS\Core\migrations'];
+                    $app->controllerMap['migrate']['migrationNamespaces'] = ['fractalCms\core\migrations'];
                 }
                 //Add rbac
                 if (isset($app->controllerMap['migrate']['migrationPath']) === true) {
@@ -193,14 +149,71 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
     }
 
     /**
+     * Set context id
+     *
+     * @param $id
+     * @return void
+     * @throws Exception
+     */
+    public function setContextId($id) : void
+    {
+        try {
+            $this->contextId = $id;
+        }catch (Exception $e) {
+            Yii::error($e->getMessage(), __METHOD__);
+            throw  $e;
+        }
+    }
+
+    /**
+     * Get context routes
+     *
+     * @return array[]
+     */
+    public function getRoutes(): array
+    {
+        return [
+            $this->id.'/tableau-de-bord' => $this->id.'/default/index',
+            $this->id.'/gestion-des-utilisateurs' => $this->id.'/user/index',
+            $this->id.'/connexion' => $this->id.'/authentification/login',
+            $this->id.'/deconnexion' => $this->id.'/authentication/logout',
+            $this->id.'/utilisateurs/<id:([^/]+)>/editer'=> $this->id.'/user/update',
+            $this->id.'/utilisateurs/<id:([^/]+)>/supprimer' => $this->id.'/user-api/delete',
+            $this->id.'/utilisateurs/<id:([^/]+)>/activer-desactiver' => $this->id.'/user-api/activate',
+            $this->id.'/utilisateurs/creer' => $this->id.'/user/create',
+            $this->id.'/utilisateurs/liste' => $this->id.'/user/index',
+            $this->id.'/parametres/liste' => $this->id.'/parameter/index',
+            $this->id.'/parametres/creer' => $this->id.'/parameter/create',
+            $this->id.'/parametres/<id:([^/]+)>/editer' => $this->id.'/parameter/update',
+            $this->id.'/parametres/<id:([^/]+)>/supprimer' => $this->id.'/api/parameter/delete',
+        ];
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return array
+     */
+    public function getInformations(): array
+    {
+        return [];
+    }
+
+    /**
      * Return context Permission
      * @return array
      */
     public function getPermissions(): array
     {
         return [
-            Constant::PERMISSION_MAIN_USER,
-            Constant::PERMISSION_MAIN_PARAMETER,
+            Constant::PERMISSION_MAIN_USER => 'Utilisateur',
+            Constant::PERMISSION_MAIN_PARAMETER => 'Configuration Paramètres',
         ];
     }
 
@@ -208,12 +221,6 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
     {
         try {
             Yii::debug(Constant::TRACE_DEBUG, __METHOD__, __METHOD__);
-            $configuration = [
-                'title' => 'Configuration',
-                'url' => null,
-                'optionsClass' => [],
-                'children' => []
-            ];
             $admins = [
                 'title' => 'Administration',
                 'url' => null,
@@ -230,7 +237,7 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
                 }
                 $admins['children'][] =  [
                     'title' => 'Utilisateurs',
-                    'url' => Url::to(['user/index']),
+                    'url' => Url::to(['/'.$this->id.'/user/index']),
                     'optionsClass' => $optionsClass,
                     'children' => [],
                 ];
@@ -241,12 +248,12 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
                 if (Yii::$app->controller->id == 'parameter') {
                     $optionsClass[] = 'text-primary fw-bold';
                 }
-                if(empty($configuration['optionsClass']) === true) {
-                    $configuration['optionsClass'] = $optionsClass;
+                if(empty($admins['optionsClass']) === true) {
+                    $admins['optionsClass'] = $optionsClass;
                 }
-                $configuration['children'][] = [
+                $admins['children'][] = [
                     'title' => 'Paramètres',
-                    'url' => Url::to(['parameter/index']),
+                    'url' => Url::to(['/'.$this->id.'/parameter/index']),
                     'optionsClass' => $optionsClass,
                     'children' => [],
                 ];
@@ -255,15 +262,13 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
             if (empty($admins['children']) === false) {
                 $data[] = $admins;
             }
-            if (empty($configuration['children']) === false) {
-                $data[] = $configuration;
-            }
             return $data;
         } catch (Exception $e) {
             Yii::error($e->getMessage(), __METHOD__);
             throw $e;
         }
     }
+
 
     /**
      * Get all persmission
@@ -274,10 +279,12 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
     public function getAllPermissions() : array
     {
         try {
-            $permissions = [];
-            $modules = Yii::$app->getModules();
-            foreach ($modules as $module) {
-                if ($module instanceof FractalCmsCoreInterface) {
+            $permissions = $this->getPermissions();
+            $modules = Yii::$app->modules;
+            foreach ($modules as $id => $module) {
+                $module = Yii::$app->getModule($id);
+                if ($module instanceof FractalCmsCoreInterface && $module->id !== $this->id) {
+                    $module->setContextId($id);
                     $permissions = ArrayHelper::merge($permissions, $module->getPermissions());
                 }
             }
@@ -299,13 +306,66 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
     {
         try {
             $menus = $this->getMenu();
-            $modules = Yii::$app->getModules();
-            foreach ($modules as $module) {
-                if ($module instanceof FractalCmsCoreInterface) {
-                    $permissions = ArrayHelper::merge($permissions, $module->getMenu());
+            $modules = Yii::$app->modules;
+            foreach ($modules as $id => $module) {
+                $module = Yii::$app->getModule($id);
+                if ($module instanceof FractalCmsCoreInterface && $module->id !== $this->id) {
+                    $module->setContextId($id);
+                    $menus = array_merge_recursive($menus, $module->getMenu());
                 }
             }
             return $menus;
+        }catch (Exception $e) {
+            Yii::error($e->getMessage(), __METHOD__);
+            throw  $e;
+        }
+    }
+
+    /**
+     * Get routes of all module
+     *
+     * @return array[]
+     * @throws Exception
+     */
+    public function getAllRoutes() : array
+    {
+        try {
+            $routes = $this->getRoutes();
+            $modules = Yii::$app->modules;
+            foreach ($modules as $id => $module) {
+                $module = Yii::$app->getModule($id);
+                if ($module instanceof FractalCmsCoreInterface && $module->id !== $this->id) {
+                    $module->setContextId($id);
+                    $routes = ArrayHelper::merge($routes, $module->getRoutes());
+                }
+            }
+            return $routes;
+        }catch (Exception $e) {
+            Yii::error($e->getMessage(), __METHOD__);
+            throw  $e;
+        }
+    }
+
+
+    /**
+     * Get all informations
+     *
+     * @return array[]
+     * @throws Exception
+     */
+    public function getAllInformations() : array
+    {
+        try {
+            $informations = [];
+            $modules = Yii::$app->modules;
+            foreach ($modules as $id => $module) {
+                $module = Yii::$app->getModule($id);
+                if ($module instanceof FractalCmsCoreInterface && $module->id !== $this->id) {
+                    $module->setContextId($id);
+                    $informations[$module->getName().' : vue d\'ensemble'] = $module->getInformations();
+                }
+            }
+            return $informations;
         }catch (Exception $e) {
             Yii::error($e->getMessage(), __METHOD__);
             throw  $e;
