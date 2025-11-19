@@ -78,6 +78,16 @@ class RbacController extends Controller
                     if ($hasChild === false) {
                         $auth->addChild($permissionManage, $permission);
                     }
+                    if ($author instanceof Role
+                        && in_array($permissionMain, [Constant::PERMISSION_MAIN_USER, Constant::PERMISSION_MAIN_PARAMETER]) === false
+                        && in_array($action, [
+                            Constant::PERMISSION_ACTION_LIST,
+                            Constant::PERMISSION_ACTION_CREATE,
+                            Constant::PERMISSION_ACTION_UPDATE,
+                            Constant::PERMISSION_ACTION_ACTIVATION]) === true) {
+                            $auth->addChild($author, $permission);
+
+                    }
                 }
 
             }

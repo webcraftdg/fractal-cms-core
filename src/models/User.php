@@ -36,6 +36,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
     const SCENARIO_CREATE = 'create';
     const SCENARIO_CREATE_ADMIN = 'create-admin';
+    const SCENARIO_CREATE_AUTHOR = 'create-author';
     const SCENARIO_UPDATE = 'update';
     const SCENARIO_LOGIN = 'login';
     const SCENARIO_MOT_PASSE = 'mot-de-passe';
@@ -75,6 +76,9 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         $scenarios[static::SCENARIO_CREATE_ADMIN] = [
             'email', 'password', 'lastname', 'firstname', 'dateCreate', 'dateUpdate', 'authKey', 'token', 'tmpPassword', 'active', 'tmpCheckPassword', 'authRules'
         ];
+        $scenarios[static::SCENARIO_CREATE_AUTHOR] = [
+            'email', 'password', 'lastname', 'firstname', 'dateCreate', 'dateUpdate', 'authKey', 'token', 'tmpPassword', 'active', 'tmpCheckPassword', 'authRules'
+        ];
         $scenarios[static::SCENARIO_UPDATE] = [
             'email', 'password', 'lastname', 'firstname', 'dateCreate', 'dateUpdate', 'authKey', 'token', 'tmpPassword', 'active', 'tmpCheckPassword', 'authRules'
         ];
@@ -99,15 +103,15 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['dateCreate', 'dateUpdate', 'authRules'], 'safe'],
             [['email', 'lastname', 'firstname'], 'string', 'max' => 255],
             [['password', 'tmpPassword'], 'string', 'max' => 64],
-            [['email', 'lastname', 'firstname', 'tmpPassword'], 'required', 'on' => [self::SCENARIO_CREATE, self::SCENARIO_CREATE_ADMIN]],
+            [['email', 'lastname', 'firstname', 'tmpPassword'], 'required', 'on' => [self::SCENARIO_CREATE, self::SCENARIO_CREATE_ADMIN, self::SCENARIO_CREATE_AUTHOR]],
             [['tmpCheckPassword'], 'required', 'on' => [self::SCENARIO_CREATE]],
-            [['email'], 'email',  'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE, self::SCENARIO_CREATE_ADMIN], 'message' => 'L\'email doit être conforme'],
-            [['email'], 'unique', 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE, self::SCENARIO_CREATE_ADMIN], 'message' => 'L\'email doit être unique'],
-            [['authKey'], 'unique', 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE, self::SCENARIO_CREATE_ADMIN]],
-            [['token'], 'unique', 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE, self::SCENARIO_CREATE_ADMIN]],
+            [['email'], 'email',  'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE, self::SCENARIO_CREATE_ADMIN, self::SCENARIO_CREATE_AUTHOR], 'message' => 'L\'email doit être conforme'],
+            [['email'], 'unique', 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE, self::SCENARIO_CREATE_ADMIN, self::SCENARIO_CREATE_AUTHOR], 'message' => 'L\'email doit être unique'],
+            [['authKey'], 'unique', 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE, self::SCENARIO_CREATE_ADMIN, self::SCENARIO_CREATE_AUTHOR]],
+            [['token'], 'unique', 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE, self::SCENARIO_CREATE_ADMIN, self::SCENARIO_CREATE_AUTHOR]],
             [['email', 'tmpPassword'], 'required', 'on' => [self::SCENARIO_LOGIN]],
             [['tmpCheckPassword', 'tmpPassword'], 'required', 'on' => [self::SCENARIO_MOT_PASSE], 'message' => 'Le nouveau mot de passe et la validation sont requises'],
-            [[ 'tmpPassword'], 'match', 'pattern' => '/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,16}$/', 'on' => [self::SCENARIO_MOT_PASSE, self::SCENARIO_CREATE_ADMIN, self::SCENARIO_CREATE], 'message' => 'Mot de passe : format invalide'],
+            [[ 'tmpPassword'], 'match', 'pattern' => '/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,16}$/', 'on' => [self::SCENARIO_MOT_PASSE, self::SCENARIO_CREATE_ADMIN, self::SCENARIO_CREATE_AUTHOR, self::SCENARIO_CREATE], 'message' => 'Mot de passe : format invalide'],
             [[ 'tmpPassword'], 'compare', 'compareAttribute' => 'tmpCheckPassword', 'on' => [self::SCENARIO_MOT_PASSE, self::SCENARIO_CREATE], 'message' => 'les mots de passe ne correspondent pas'],
         ];
     }
@@ -221,7 +225,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             if ($roleName === Constant::ROLE_ADMIN) {
                 $administrator->scenario = User::SCENARIO_CREATE_ADMIN;
             } else {
-                $administrator->scenario = User::SCENARIO_CREATE;
+                $administrator->scenario = User::SCENARIO_CREATE_AUTHOR;
             }
             $administrator->email = $email;
             $administrator->tmpPassword = $password;
