@@ -45,7 +45,7 @@ class RbacController extends Controller
                 $auth->addChild($admin, $author);
             }
             //PERMISSION
-            $main = Module::getInstance()->getAllPermissions();
+            $main = array_keys(Module::getInstance()->getAllPermissions());
 
             $actions = [
                 Constant::PERMISSION_ACTION_CREATE,
