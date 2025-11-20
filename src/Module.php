@@ -35,7 +35,7 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
     public $layoutPath = '@fractalCms/core/views/layouts';
     public $layout = 'main';
     public $defaultRoute = 'default/index';
-    public $version = 'v1.0.0';
+    public $version = 'v2.0.0';
     public string $name = 'FractalCMS-Core';
     public string $commandNameSpace = 'fractalCms:';
 
