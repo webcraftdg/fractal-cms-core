@@ -41,7 +41,7 @@ Pour récupérer cette valeur dans votre code, une fonction existe dans **fracta
             $content = $this->getContent();
             //Recherche du premier élément "entete" du "Content"
             $itemEntete = $content->getItems()
-                ->andWhere(['configItemId' => Cms::getParameter('ITEM', 'ENTETE')])
+                ->andWhere(['configItemId' => Parameter::getParameter('ITEM', 'ENTETE')])
                 ->one();
             return $this->render('index',
                 [
