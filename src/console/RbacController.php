@@ -45,7 +45,7 @@ class RbacController extends Controller
                 $auth->addChild($admin, $author);
             }
             //PERMISSION
-            $main = Module::getInstance()->getAllPermissions();
+            $main = array_keys(Module::getInstance()->getAllPermissions());
 
             $actions = [
                 Constant::PERMISSION_ACTION_CREATE,
@@ -77,6 +77,16 @@ class RbacController extends Controller
                     $hasChild = $auth->hasChild($permissionManage, $permission);
                     if ($hasChild === false) {
                         $auth->addChild($permissionManage, $permission);
+                    }
+                    if ($author instanceof Role
+                        && in_array($permissionMain, [Constant::PERMISSION_MAIN_USER, Constant::PERMISSION_MAIN_PARAMETER]) === false
+                        && in_array($action, [
+                            Constant::PERMISSION_ACTION_LIST,
+                            Constant::PERMISSION_ACTION_CREATE,
+                            Constant::PERMISSION_ACTION_UPDATE,
+                            Constant::PERMISSION_ACTION_ACTIVATION]) === true) {
+                            $auth->addChild($author, $permission);
+
                     }
                 }
 

@@ -24,13 +24,6 @@ php yii.php fractalCms:admin/create
     'modules' => [
         'fractal-cms' => [
             'class' => FractalCmsModule::class
-            'modules' => [
-                  'moduleName' => [
-                    'class' => 'moduleClass',
-                    ../..
-                  ],
-                  ../..
-            ]
          ],
         //../..
     ],

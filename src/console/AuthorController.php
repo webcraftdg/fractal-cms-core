@@ -11,11 +11,12 @@
 namespace fractalCms\core\console;
 
 use Exception;
-use fractalCms\components\Constant;
-use fractalCms\models\User;
+use fractalCms\core\components\Constant;
+use fractalCms\core\models\User;
 use Yii;
 use yii\console\Controller;
 use yii\console\ExitCode;
+use yii\helpers\Json;
 
 class AuthorController extends Controller
 {
@@ -34,23 +35,18 @@ class AuthorController extends Controller
             $password = $this->prompt("\t".'password :');
             $firstname = $this->prompt("\t".'firstname :');
             $lastname = $this->prompt("\t".'lastname :');
-            $author = Yii::createObject(User::class);
-            $author->scenario = User::SCENARIO_CREATE;
-            $author->email = $email;
-            $author->tmpPassword = $password;
-            $author->firstname = $firstname;
-            $author->lastname = $lastname;
-            if ($author->validate() === true) {
-                $author->hashPassword();
-                $author->save();
-                $this->stdout('Save auhtor '.$author->email.' '.$author->tmpPassword."\n");
+            $administrator = User::createUser(
+                Constant::ROLE_AUTHOR,
+                $email,
+                $password,
+                $firstname,
+                $lastname
+            );
+            if ($administrator->hasErrors() === false) {
+                $this->stdout('Save author '.$email.' '.$password."\n");
             } else {
-                $this->stdout('auhtor is invalid'."\n");
+                $this->stdout('Author is invalid : '.Json::encode($administrator->errors)."\n");
                 return ExitCode::UNSPECIFIED_ERROR;
-            }
-            $role = Yii::$app->authManager->getRole(Constant::ROLE_AUTHOR);
-            if ($role !== null) {
-                Yii::$app->authManager->assign($role, $author->id);
             }
         } catch (Exception $e) {
             Yii::error($e->getMessage(), __METHOD__);
