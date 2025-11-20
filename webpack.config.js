@@ -183,19 +183,19 @@ var webpackConfig = {
     ]
   },
   optimization: {
+    minimize: prodFlag,
     runtimeChunk: false,
     splitChunks: false
   },
   resolve: {
+    symlinks: false,
     alias: {},
     extensions: ['.ts', '.js'],
     modules: [
-      path.resolve(__dirname, config.sourceDir, config.subDirectories.sources, "app"),
+      "node_modules",
       path.resolve(__dirname, config.sourceDir, config.subDirectories.sources),
-      "node_modules"
-    ].map(function(x){
-      return path.resolve(x);
-    })
+      path.resolve(__dirname, config.sourceDir, config.subDirectories.sources, "app")
+    ]
   },
   target: 'web'
 };
