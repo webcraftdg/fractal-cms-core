@@ -362,7 +362,10 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
                 $module = Yii::$app->getModule($id);
                 if ($module instanceof FractalCmsCoreInterface && $module->id !== $this->id) {
                     $module->setContextId($id);
-                    $informations[$module->getName().' : vue d\'ensemble'] = $module->getInformations();
+                    $infos = $module->getInformations();
+                    if (empty($infos) === false) {
+                        $informations[$module->getName().' : vue d\'ensemble'] = $module->getInformations();
+                    }
                 }
             }
             return $informations;
