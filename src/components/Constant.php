@@ -25,11 +25,11 @@ class Constant
     const PERMISSION_ACTION_ACTIVATION = 'ACTIVATION';
     const PERMISSION_ACTION_LIST = 'LIST';
 
-    const PERMISSION_MAIN_USER = 'USER:';
-    const PERMISSION_MAIN_PARAMETER = 'PARAMTEER:';
+    const PERMISSION_MAIN_USER = 'FRACTAL_CMS:USER:';
+    const PERMISSION_MAIN_PARAMETER = 'FRACTAL_CMS:PARAMETER:';
 
-    const ROLE_ADMIN = 'ADMIN';
-    const ROLE_AUTHOR = 'AUTHOR';
+    const ROLE_ADMIN = 'FRACTAL_CMS:ADMIN';
+    const ROLE_AUTHOR = 'FRACTAL_CMS:AUTHOR';
     const TRACE_DEBUG = 'debug';
 
     public static $actions = [
@@ -40,6 +40,11 @@ class Constant
         Constant::PERMISSION_ACTION_LIST => 'Lister',
     ];
 
+    /**
+     * @param User $user
+     * @return array
+     * @throws Exception
+     */
     public static function buildListRules(User $user) : array
     {
         try {
@@ -70,6 +75,24 @@ class Constant
                 $rules[$permissionManageName] = $manageRules;
             }
             return $rules;
+        } catch (Exception $e) {
+            Yii::error($e->getMessage(), __METHOD__);
+            throw $e;
+        }
+    }
+
+    /**
+     * @return array
+     * @throws Exception
+     */
+    public static function getDbPermissions() : array
+    {
+        try {
+            $authManager = Yii::$app->authManager;
+            $permissions = $authManager->getPermissions();
+            return array_map(function($permission) {
+                return $permission->name;
+            }, $permissions);
         } catch (Exception $e) {
             Yii::error($e->getMessage(), __METHOD__);
             throw $e;
