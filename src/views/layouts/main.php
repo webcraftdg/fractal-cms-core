@@ -11,15 +11,18 @@
  * @var $content string
  */
 
-use fractalCms\core\assets\BootstrapAsset;
 use fractalCms\core\assets\StaticAsset;
 use fractalCms\core\assets\WebpackAsset;
 use fractalCms\core\Module;
 use yii\helpers\Html;
+use yii\bootstrap5\BootstrapAsset;
+use yii\bootstrap5\BootstrapPluginAsset;
+
+BootstrapAsset::register($this);
+BootstrapPluginAsset::register($this);
 
 $moduleInstance = Module::getInstance();
 WebpackAsset::register($this);
-BootstrapAsset::register($this);
 $baseUrl = StaticAsset::register($this)->baseUrl;
 Yii::$app->response->headers->set('X-Frame-Options', 'ALLOW-FROM \'self\'');
 Yii::$app->response->headers->set('X-Content-Type-Options', 'nosniff');

@@ -45,6 +45,20 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
     {
         try {
             Yii::setAlias('@fractalCms/core', __DIR__);
+            if (Yii::$app->has('authManager') === false) {
+                $app->setComponents([
+                    'authManager' => [
+                        'class'=>'yii\rbac\DbManager',
+                        'db'=>'db',
+                        'itemTable'=>'{{%authItem}}',
+                        'itemChildTable'=>'{{%authItemChild}}',
+                        'assignmentTable'=>'{{%authAssignment}}',
+                        'ruleTable' => '{{%authRules}}'
+                    ],
+                ]);
+            }
+
+
             if ($this->identityClass === null) {
                 $app->setComponents([
                     'user' => [
