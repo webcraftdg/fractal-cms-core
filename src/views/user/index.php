@@ -8,7 +8,7 @@
  * @version XXX
  * @package views
  *
- * @var \fractalCms\models\User[] $models
+ * @var \fractalCms\core\models\User[] $models
  */
 use fractalCms\core\components\Constant;
 use yii\helpers\Html;
@@ -43,7 +43,7 @@ use yii\helpers\Url;
 </div>
 <div class="row m-3">
         <?php
-            /** @var \fractalCms\models\User $model */
+            /** @var \fractalCms\core\models\User $model */
             foreach ($models as $model) {
                 $classes = ['row align-items-center  p-1 border mt-1'];
                 if ((boolean)$model->active === true) {

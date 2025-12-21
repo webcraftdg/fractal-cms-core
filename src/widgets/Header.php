@@ -14,19 +14,24 @@ use yii\base\Widget;
 use Yii;
 use yii\helpers\Url;
 use Exception;
+use fractalCms\core\Module;
 
 class Header extends Widget
 {
 
-    public $logoutUrl = ['authentication/logout'];
     /**
      * @inheritdoc
      */
     public function init()
     {
-        parent::init();
-        Yii::debug('Trace: '.__METHOD__, __METHOD__);
-        ob_start();
+        try {
+            Yii::debug('Trace: '.__METHOD__, __METHOD__);
+            parent::init();
+            ob_start();
+        } catch (Exception $e) {
+            Yii::error($e->getMessage(), __METHOD__);
+            throw  $e;
+        }
     }
 
     /**
@@ -43,7 +48,7 @@ class Header extends Widget
             return $this->render(
                 'header', [
                     'identity' => Yii::$app->user->getIdentity(),
-                    'logoutUrl' => Url::to($this->logoutUrl),
+                    'logoutUrl' => Url::to(Module::getInstance()->getLogoutUrl()),
                 ]
             );
         } catch (Exception $e) {
