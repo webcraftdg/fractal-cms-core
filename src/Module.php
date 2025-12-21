@@ -35,7 +35,8 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
     public $layoutPath = '@fractalCms/core/views/layouts';
     public $layout = 'main';
     public $defaultRoute = 'default/index';
-    public $version = 'v2.0.0';
+    public $version = 'v2.1.0';
+    public $identityClass = null;
     public string $name = 'FractalCMS-Core';
     public string $commandNameSpace = 'fractalCms:';
 
@@ -44,20 +45,22 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
     {
         try {
             Yii::setAlias('@fractalCms/core', __DIR__);
-            $app->setComponents([
-                'user' => [
-                    'class' => WebUser::class,
-                    'identityClass' => User::class,
-                    'enableAutoLogin' => true,
-                    'autoRenewCookie' => true,
-                    'loginUrl' => [$this->uniqueId.'/authentication/login'],
-                    'idParam' => '__cmsId',
-                    'returnUrlParam' => '__fractalCmsReturnUrl',
-                    'identityCookie' => [
-                        'name' => '_fractalCmsIdentity', 'httpOnly' => true
-                    ]
-                ],
-            ]);
+            if ($this->identityClass === null) {
+                $app->setComponents([
+                    'user' => [
+                        'class' => WebUser::class,
+                        'identityClass' => User::class,
+                        'enableAutoLogin' => true,
+                        'autoRenewCookie' => true,
+                        'loginUrl' => [$this->uniqueId.'/authentication/login'],
+                        'idParam' => '__cmsId',
+                        'returnUrlParam' => '__fractalCmsReturnUrl',
+                        'identityCookie' => [
+                            'name' => '_fractalCmsIdentity', 'httpOnly' => true
+                        ]
+                    ],
+                ]);
+            }
 
             Yii::$container->setSingleton(Menu::class, [
                 'class' => Menu::class,
@@ -190,6 +193,14 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
     }
 
     /**
+     * @return string[]
+     */
+    public function getLogoutUrl(): array
+    {
+        return ['/'.$this->id.'/authentication/logout'];
+    }
+
+    /**
      * @return string
      */
     public function getName(): string
@@ -221,13 +232,15 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
     {
         try {
             Yii::debug(Constant::TRACE_DEBUG, __METHOD__, __METHOD__);
+            $identity = Yii::$app->user->getIdentity();
             $admins = [
                 'title' => 'Administration',
                 'url' => null,
                 'optionsClass' => [],
                 'children' => []
             ];
-            if (Yii::$app->user->can(Constant::PERMISSION_MAIN_USER.Constant::PERMISSION_ACTION_LIST) === true) {
+            if (Yii::$app->user->can(Constant::PERMISSION_MAIN_USER.Constant::PERMISSION_ACTION_LIST) === true
+                && $identity instanceof User) {
                 $optionsClass = [];
                 if (Yii::$app->controller->id == 'user') {
                     $optionsClass[] = 'text-primary fw-bold';
@@ -362,7 +375,10 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
                 $module = Yii::$app->getModule($id);
                 if ($module instanceof FractalCmsCoreInterface && $module->id !== $this->id) {
                     $module->setContextId($id);
-                    $informations[$module->getName().' : vue d\'ensemble'] = $module->getInformations();
+                    $infos = $module->getInformations();
+                    if (empty($infos) === false) {
+                        $informations[$module->getName().' : vue d\'ensemble'] = $module->getInformations();
+                    }
                 }
             }
             return $informations;

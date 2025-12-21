@@ -12,6 +12,7 @@ namespace fractalCms\core\models;
 
 use Exception;
 use fractalCms\core\components\Constant;
+use fractalCms\core\interfaces\FractalCmsCoreUserInterface;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
@@ -31,7 +32,7 @@ use yii\web\IdentityInterface;
  * @property string|null $dateCreate
  * @property string|null $dateUpdate
  */
-class User extends \yii\db\ActiveRecord implements IdentityInterface
+class User extends \yii\db\ActiveRecord implements IdentityInterface, FractalCmsCoreUserInterface
 {
 
     const SCENARIO_CREATE = 'create';
@@ -133,7 +134,11 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         ];
     }
 
-    public function getInitials()
+    /**
+     * @return string
+     * @throws Exception
+     */
+    public function getInitials() : string
     {
         try {
             $initials = (empty($this->firstname) === false) ? substr(ucfirst($this->firstname), 0, 1) : '';
