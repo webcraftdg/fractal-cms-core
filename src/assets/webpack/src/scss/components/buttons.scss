@@ -1,0 +1,23 @@
+.fc-btn {
+  @apply mt-3 sm:mt-0 inline-flex items-center gap-2 border px-4 py-2 rounded-md transition;
+}
+
+.fc-btn-success {
+  @apply bg-fractal-success text-white
+  hover:bg-fractal-successHover
+  focus:ring-fractal-success;
+}
+.fc-btn-primary {
+  @apply bg-fractal-primary text-white
+  hover:bg-fractal-primaryHover
+  focus:ring-fractal-primary;
+}
+
+.fc-btn-secondary {
+  @apply bg-white text-fractal-text border-fractal-border
+  hover:bg-gray-50;
+}
+
+.fc-btn-danger {
+  @apply bg-fractal-danger text-white hover:bg-red-700;
+}

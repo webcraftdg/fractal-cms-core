@@ -1,0 +1,23 @@
+.fc-list-header {
+  @apply grid grid-cols-1 p-2;
+}
+
+.fc-list-header-title {
+  @apply text-xl font-semibold;
+}
+.fc-list {
+  @apply grid grid-cols-1 p-2;
+}
+.fc-list-item {
+  @apply flex flex-col sm:flex-row sm:items-center gap-2 border rounded-md px-3 py-2 mt-2;
+}
+
+.fc-list-item-success {
+  @apply border-emerald-500;
+}
+.fc-list-item-danger {
+  @apply border-red-500;
+}
+.fc-list-item-primary {
+  @apply border-blue-500;
+}

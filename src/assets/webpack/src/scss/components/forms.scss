@@ -1,0 +1,23 @@
+.fc-label {
+  @apply block text-sm font-medium text-fractal-text mb-1;
+}
+
+.fc-input {
+  @apply w-full rounded-md border border-fractal-border
+  px-3 py-2 text-sm
+  focus:border-fractal-primary
+  focus:ring-1 focus:ring-fractal-primary;
+}
+
+.fc-input-group {
+  @apply flex items-center gap-2;
+}
+.fc-input-group-check {
+  @apply h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500;
+}
+.fc-input-group-input {
+  @apply text-sm font-medium text-gray-700;
+}
+.fc-error {
+  @apply border-red-600 text-red-600;
+}

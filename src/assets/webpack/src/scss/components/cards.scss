@@ -1,0 +1,8 @@
+.fc-card {
+  @apply bg-fractal-surface border border-fractal-border
+  rounded-lg p-6;
+}
+
+.fc-card-title {
+  @apply text-lg font-semibold text-fractal-text mb-4;
+}

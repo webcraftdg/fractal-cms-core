@@ -1,12 +1,12 @@
 {
   "main": {
-    "css": "css/main.a090c869.css",
-    "js": "js/main.a090c869.js"
+    "css": "css/main.60463deb.css",
+    "js": "js/main.60463deb.js"
   },
   "app": {
-    "js": "js/app.27431fca.js"
+    "js": "js/app.c0d3271c.js"
   },
   "core": {
-    "js": "js/core.d54dfc10.js"
+    "js": "js/core.578679d3.js"
   }
 }

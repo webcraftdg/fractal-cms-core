@@ -15,11 +15,6 @@ use fractalCms\core\assets\StaticAsset;
 use fractalCms\core\assets\WebpackAsset;
 use fractalCms\core\Module;
 use yii\helpers\Html;
-use yii\bootstrap5\BootstrapAsset;
-use yii\bootstrap5\BootstrapPluginAsset;
-
-BootstrapAsset::register($this);
-BootstrapPluginAsset::register($this);
 
 $moduleInstance = Module::getInstance();
 WebpackAsset::register($this);

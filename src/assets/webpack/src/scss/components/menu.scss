@@ -1,0 +1,41 @@
+.fractal-nav {
+  @apply w-full bg-white;
+}
+.fractal-nav-button-burger {
+  @apply inline-flex items-center justify-center rounded-md border px-3 py-2 text-gray-700 hover:bg-gray-50 lg:hidden;
+}
+
+.fractal-nav-list {
+  @apply absolute left-0 right-0 top-14 hidden flex-col gap-1 border-t bg-white px-4 py-4 lg:static lg:flex lg:flex-row lg:items-center lg:justify-center lg:gap-2 lg:border-0 lg:p-0;
+}
+
+.fractal-nav-link {
+  @apply block rounded-md px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-100;
+}
+
+.fractal-nav-item {
+  @apply relative
+}
+.fractal-nav-link {
+  @apply flex w-full items-center justify-between rounded-md px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-100 lg:w-auto lg:gap-2;
+}
+
+.fractal-submenu {
+  @apply mt-1 hidden flex-col rounded-md border bg-white p-1 lg:absolute lg:left-0 lg:mt-2 lg:w-56 lg:shadow;
+}
+
+.fractal-submenu-link {
+  @apply block rounded px-3 py-2 text-sm text-gray-800 hover:bg-gray-100;
+}
+
+
+
+.fractal-submenu {
+  display: none;
+}
+
+
+/* Exemple futur */
+.is-open {
+  display: block;
+}
