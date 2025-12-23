@@ -1,5 +1,9 @@
 .fc-btn {
-  @apply mt-3 sm:mt-0 inline-flex items-center gap-2 border px-4 py-2 rounded-md transition;
+  @apply mt-3 sm:mt-0 inline-flex items-center gap-2 px-4 py-2 rounded-md transition;
+}
+
+.fc-btn-sm {
+  @apply mt-3 sm:mt-0 inline-flex items-center gap-2 rounded-md transition;
 }
 
 .fc-btn-success {

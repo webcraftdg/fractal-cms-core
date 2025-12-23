@@ -816,6 +816,8 @@ select {
   height: 1rem;
 }.min-h-screen {
   min-height: 100vh;
+}.w-3\/5 {
+  width: 60%;
 }.w-4 {
   width: 1rem;
 }.w-full {
@@ -881,8 +883,6 @@ select {
 }.divide-fractal-border > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-divide-opacity, 1));
-}.rounded {
-  border-radius: 0.25rem;
 }.rounded-md {
   border-radius: 0.375rem;
 }.border {
@@ -909,8 +909,6 @@ select {
 }.bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
-}.p-0 {
-  padding: 0px;
 }.p-3 {
   padding: 0.75rem;
 }.p-4 {
@@ -983,9 +981,6 @@ select {
 }.text-indigo-500 {
   --tw-text-opacity: 1;
   color: rgb(99 102 241 / var(--tw-text-opacity, 1));
-}.text-indigo-600 {
-  --tw-text-opacity: 1;
-  color: rgb(79 70 229 / var(--tw-text-opacity, 1));
 }.text-red-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity, 1));
@@ -1063,7 +1058,6 @@ select {
           align-items: center;
   gap: 0.5rem;
   border-radius: 0.375rem;
-  border-width: 1px;
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 0.5rem;
@@ -1079,6 +1073,29 @@ select {
 }@media (min-width: 640px) {
 
   .fc-btn {
+    margin-top: 0px;
+  }
+}.fc-btn-sm {
+  margin-top: 0.75rem;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.375rem;
+  -webkit-transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, backdrop-filter, -webkit-box-shadow, -webkit-transform, -webkit-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, backdrop-filter, -webkit-box-shadow, -webkit-transform, -webkit-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-box-shadow, -webkit-transform, -webkit-filter;
+  -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-transition-duration: 150ms;
+          transition-duration: 150ms;
+}@media (min-width: 640px) {
+
+  .fc-btn-sm {
     margin-top: 0px;
   }
 }.fc-btn-success {
@@ -1180,6 +1197,70 @@ select {
   border-color: rgb(220 38 38 / var(--tw-border-opacity, 1));
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity, 1));
+}.fc-form-group {
+  margin-bottom: 0.5rem;
+}.fc-form-label {
+  margin-bottom: 0.25rem;
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity, 1));
+}.fc-form-input {
+  width: 100%;
+  border-radius: 0.375rem;
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity, 1));
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  -webkit-box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+          box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}.fc-form-input:focus {
+  --tw-border-opacity: 1;
+  border-color: rgb(99 102 241 / var(--tw-border-opacity, 1));
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(99 102 241 / var(--tw-ring-opacity, 1));
+}.fc-form-check {
+  height: 1rem;
+  width: 1rem;
+  border-radius: 0.25rem;
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity, 1));
+  --tw-text-opacity: 1;
+  color: rgb(79 70 229 / var(--tw-text-opacity, 1));
+}.fc-form-check:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(99 102 241 / var(--tw-ring-opacity, 1));
+}.fc-form-button-container {
+  margin-top: 1.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}.fc-form-button {
+  border-radius: 0.375rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(79 70 229 / var(--tw-bg-opacity, 1));
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+  -webkit-transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, backdrop-filter, -webkit-box-shadow, -webkit-transform, -webkit-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, backdrop-filter, -webkit-box-shadow, -webkit-transform, -webkit-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-box-shadow, -webkit-transform, -webkit-filter;
+  -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-transition-duration: 150ms;
+          transition-duration: 150ms;
+}.fc-form-button:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(67 56 202 / var(--tw-bg-opacity, 1));
 }.fc-table {
   width: 100%;
   overflow: hidden;
@@ -1386,7 +1467,7 @@ select {
 }.fc-list {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
-  padding: 0.5rem;
+  padding: 0.25rem;
 }.fc-list-item {
   margin-top: 0.5rem;
   display: -webkit-box;
@@ -1401,8 +1482,8 @@ select {
   border-width: 1px;
   padding-left: 0.75rem;
   padding-right: 0.75rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
 }@media (min-width: 640px) {
 
   .fc-list-item {
@@ -1425,6 +1506,13 @@ select {
   border-color: rgb(59 130 246 / var(--tw-border-opacity, 1));
 }.fc-row {
   width: 100%;
+}.fc-row-inline {
+  display: inline-block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  gap: 0.25rem;
 }.fc-colum {
   margin-bottom: 1rem;
   display: -webkit-box;
@@ -1449,10 +1537,6 @@ select {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(99 102 241 / var(--tw-ring-opacity, 1));
 }@media (min-width: 640px) {
-
-  .sm\:w-1\/2 {
-    width: 50%;
-  }
 
   .sm\:w-auto {
     width: auto;

@@ -66,11 +66,6 @@ class CoreWebpackAsset extends AssetBundle
         'core',
     ];
 
-    /**
-     * @var array list of bundles which are css only
-     */
-    public $cssOnly = [
-    ];
 
     /**
      * @var array list of bundles which are js only
@@ -81,6 +76,14 @@ class CoreWebpackAsset extends AssetBundle
 
     public $js = [
     ];
+
+    /**
+     * @var array list of bundles which are css only
+     */
+    public $cssOnly = [
+        'main',
+    ];
+
     /**
      * @inheritdoc
      */
@@ -138,10 +141,10 @@ class CoreWebpackAsset extends AssetBundle
                     $bundles = $cache->get($cacheKey);
                 }
                 foreach($this->webpackBundles as $bundle) {
-                    if (isset($bundles[$bundle]['js']) === true && in_array($bundle, $this->cssOnly) === false) {
+                    if (isset($bundles[$bundle]['js']) === true && in_array($bundle, $this->jsOnly) === false) {
                         $this->js[] = $bundles[$bundle]['js'];
                     }
-                    if (isset($bundles[$bundle]['css']) === true && in_array($bundle, $this->jsOnly) === false) {
+                    if (isset($bundles[$bundle]['css']) === true && in_array($bundle, $this->cssOnly) === false) {
                         $this->css[] = $bundles[$bundle]['css'];
                     }
                 }

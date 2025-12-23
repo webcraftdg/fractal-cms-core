@@ -21,7 +21,7 @@ use fractalCms\core\components\Constant;
         <div class="flex mb-4">
             <div class="flex items-center gap-2">
                 <?php
-                echo Html::activeCheckbox($model, 'active', ['label' =>  null, 'class' => 'h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500']);
+                echo Html::activeCheckbox($model, 'active', ['label' =>  null, 'class' => 'fc-form-check']);
                 echo Html::activeLabel($model, 'active', ['label' => 'Actif', 'class' => 'text-sm font-medium text-gray-700']);
                 ?>
             </div>
