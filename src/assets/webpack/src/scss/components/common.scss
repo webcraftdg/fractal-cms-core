@@ -7,3 +7,12 @@
 .fc-colum {
   @apply flex justify-center mb-4;
 }
+.fc-success {
+  @apply bg-fractal-success text-white
+}
+.fc-danger {
+  @apply bg-red-600 text-white
+}
+.fc-primary {
+  @apply bg-blue-600 text-white;
+}
