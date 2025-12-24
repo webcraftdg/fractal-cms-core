@@ -24,12 +24,6 @@ $moduleInstance = Module::getInstance();
         <h1 class="text-2xl font-semibold text-fractal-text">
             👋 Bienvenue, <?php echo ucfirst($model->firstname); ?>
         </h1>
-        <p class="text-sm text-fractal-muted">
-            Gérez vos contenus et sections avec
-            <span class="font-medium text-fractal-text">
-                <?php echo $moduleInstance->name . ' ' . $moduleInstance->version ?>
-            </span>
-        </p>
     </section>
 
     <?php if (!empty($informations)): ?>
