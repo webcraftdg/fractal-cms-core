@@ -29,7 +29,7 @@ export class Menu {
     private addEvent()
     {
         this.logger.trace('addEvent');
-        this.actionButtons = this.element.querySelectorAll('[data-toggle="dropdown"]');
+        this.actionButtons = this.element.querySelectorAll('[aria-controls]');
        this.actionButtons.forEach((ele, index) => {
            ele.addEventListener('click', this.onAction);
        });
@@ -47,17 +47,20 @@ export class Menu {
         this.logger.trace('onAction');
         let target:HTMLElement = <HTMLElement>event.target;
         if (target) {
+            if (target.nodeName !== 'button') {
+                target = target.closest('button');
+            }
             const idControls:string = target.getAttribute('aria-controls');
             if (idControls) {
                 this.closeOthers(idControls);
                 const nav:HTMLElement = this.element.querySelector('#'+idControls);
                 if (nav) {
-                    if (nav.classList.contains('show')) {
-                        nav.classList.remove('show');
+                    if (nav.classList.contains('is-open')) {
+                        nav.classList.remove('is-open');
                         nav.setAttribute('aria-expanded', 'false');
                         target.setAttribute('aria-expanded', 'false');
                     } else {
-                        nav.classList.add('show');
+                        nav.classList.add('is-open');
                         nav.setAttribute('aria-expanded', 'true');
                         target.setAttribute('aria-expanded', 'true');
                     }
@@ -69,10 +72,10 @@ export class Menu {
     private closeOthers(id:string)
     {
         this.logger.trace('closeOthers');
-        const dropdownMenu:NodeListOf<HTMLElement> = this.element.querySelectorAll('.dropdown-menu');
+        const dropdownMenu:NodeListOf<HTMLElement> = this.element.querySelectorAll('.fractal-submenu');
         dropdownMenu.forEach((element:HTMLElement, key) => {
             if (element.id != id) {
-                element.classList.remove('show');
+                element.classList.remove('is-open');
             }
         });
     }

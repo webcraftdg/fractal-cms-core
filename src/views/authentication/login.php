@@ -15,41 +15,77 @@
 use yii\helpers\Html;
 
 ?>
+<div class="min-h-screen flex items-center justify-center bg-fractal-bg px-4">
+    <div class="w-full max-w-md space-y-6">
+        <!-- Titre -->
+        <h1 class="text-2xl font-semibold text-center text-fractal-text">
+            Veuillez vous identifier
+        </h1>
 
-<div class="row">
-    <div class="col-sm-12">
-        <h1 class="text-center">Veuillez vous identifier</h1>
-    </div>
-    <?php if (empty($model->errors) === false): ?>
-    <div class="col-sm-12">
-        <div class="row justify-content-center">
-            <?php echo Html::tag('p', 'Veuillez vérifier vos informations', ['class' => 'col-sm-6  text-bg-danger']);?>
-        </div>
-    </div>
-    <?php endif; ?>
-    <div class="col-sm-12">
-        <?php echo Html::beginForm(); ?>
-        <div class="row  justify-content-center">
-            <div class="col-sm-6 form-group">
-                <?php
-                echo Html::activeLabel($model, 'email', ['label' => 'Identifiant (Email)', 'class' => 'form-label']);
-                echo Html::activeTextInput($model, 'email', ['placeholder' => 'votre login / email', 'class' => 'form-control']);
-                ?>
+        <!-- Message d’erreur -->
+        <?php if (!empty($model->errors)): ?>
+            <div class="rounded-md bg-fractal-danger/10 border border-fractal-danger text-fractal-danger px-4 py-3 text-sm text-center">
+                Veuillez vérifier vos informations
             </div>
-        </div>
-        <div class="row  justify-content-center">
-            <div class="col-sm-6  form-group">
-                <?php
-                echo Html::activeLabel($model, 'email', ['label' => 'Mot de passe', 'class' => 'form-label']);
-                echo Html::activePasswordInput($model, 'tmpPassword', ['placeholder' => 'Votre mot de passe', 'class' => 'form-control']);
-                ?>
+        <?php endif; ?>
+        <!-- Formulaire -->
+        <div class="fc-card">
+            <?php echo Html::beginForm(); ?>
+            <div class="space-y-4">
+                <!-- Email -->
+                <div>
+                    <?php echo Html::activeLabel(
+                        $model,
+                        'email',
+                        [
+                            'label' => 'Identifiant (Email)',
+                            'class' => 'fc-label'
+                        ]
+                    ); ?>
+
+                    <?php echo Html::activeTextInput(
+                        $model,
+                        'email',
+                        [
+                            'placeholder' => 'votre login / email',
+                            'class' => 'fc-input'
+                        ]
+                    ); ?>
+                </div>
+
+                <!-- Mot de passe -->
+                <div>
+                    <?php echo Html::activeLabel(
+                        $model,
+                        'tmpPassword',
+                        [
+                            'label' => 'Mot de passe',
+                            'class' => 'fc-label'
+                        ]
+                    ); ?>
+
+                    <?php echo Html::activePasswordInput(
+                        $model,
+                        'tmpPassword',
+                        [
+                            'placeholder' => 'Votre mot de passe',
+                            'class' => 'fc-input'
+                        ]
+                    ); ?>
+                </div>
+
+                <!-- Bouton -->
+                <div class="pt-2">
+                    <button type="submit" class="fc-btn fc-btn-primary w-full">
+                        S’identifier
+                    </button>
+                </div>
+
             </div>
+
+            <?php echo Html::endForm(); ?>
         </div>
-        <div class="row  justify-content-center mt-3">
-            <div  class="col-sm-6 text-center form-group">
-                <button type="submit" class="btn btn-primary">S'identifier</button>
-            </div>
-        </div>
-        <?php  echo Html::endForm(); ?>
+
     </div>
 </div>
+

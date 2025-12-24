@@ -35,7 +35,7 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
     public $layoutPath = '@fractalCms/core/views/layouts';
     public $layout = 'main';
     public $defaultRoute = 'default/index';
-    public $version = 'v2.1.0';
+    public $version = 'v2.2.0';
     public $identityClass = null;
     public string $name = 'FractalCMS-Core';
     public string $commandNameSpace = 'fractalCms:';
@@ -45,6 +45,20 @@ class Module extends \yii\base\Module implements BootstrapInterface, FractalCmsC
     {
         try {
             Yii::setAlias('@fractalCms/core', __DIR__);
+            if (Yii::$app->has('authManager') === false) {
+                $app->setComponents([
+                    'authManager' => [
+                        'class'=>'yii\rbac\DbManager',
+                        'db'=>'db',
+                        'itemTable'=>'{{%authItem}}',
+                        'itemChildTable'=>'{{%authItemChild}}',
+                        'assignmentTable'=>'{{%authAssignment}}',
+                        'ruleTable' => '{{%authRules}}'
+                    ],
+                ]);
+            }
+
+
             if ($this->identityClass === null) {
                 $app->setComponents([
                     'user' => [

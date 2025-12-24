@@ -1,5 +1,35 @@
+@tailwind base;
 @tailwind utilities;
 @tailwind components;
+
+// Fractal UI base
+@layer components {
+  .fc-container {
+    @apply max-w-full px-4;
+  }
+
+  .fc-title {
+    @apply text-xl font-semibold mb-4;
+  }
+  .fc-col-1 {
+    @apply w-24
+  }
+  .fc-col-2 {
+    @apply w-48
+  }
+  .fc-col-3 {
+    @apply w-64
+  }
+  .fc-col-4 {
+    @apply w-80
+  }
+  .fc-badge {
+    @apply p-1 rounded-full
+  }
+  .fc-badge-primary {
+    @apply bg-blue-500 text-white
+  }
+}
 
 .form {
   &-textarea {
@@ -9,4 +39,16 @@
 
 .dragging { opacity: 0.5; }
 .over { border: 2px dashed #007bff; }
+
+// Bootstrap compatibility layer
+@import "components/buttons";
+@import "components/forms";
+@import "components/tables";
+@import "components/cards";
+@import "components/menu";
+@import "components/list";
+@import "components/common";
+
+
+
 

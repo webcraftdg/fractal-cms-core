@@ -10,7 +10,7 @@
         "website",
         "webcraftdg"
     ],
-    "version": "v2.1.0",
+    "version": "v2.2.0",
     "homepage": "https://github.com/webcraftdg/fractal-cms-core",
     "type": "library",
     "license": "MIT",
@@ -35,19 +35,11 @@
         "league/flysystem": "^3.25"
     },
     "require-dev": {
-        "yiisoft/yii2-debug": "~2.0",
-        "yiisoft/yii2-gii": "~2.0",
         "codeception/codeception": "^5.3",
         "codeception/module-phpbrowser": "*",
         "codeception/module-asserts": "*",
         "codeception/module-yii2": "^2.0",
         "codeception/module-db": "^3.2"
-    },
-    "replace": {
-        "bower-asset/jquery": "*",
-        "bower-asset/inputmask": "*",
-        "bower-asset/punycode": "*",
-        "bower-asset/yii2-pjax": "*"
     },
     "autoload": {
         "psr-4": {

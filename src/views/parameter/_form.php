@@ -16,42 +16,28 @@
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 ?>
-<div class="row">
-    <div class="col-sm-12">
-        <?php echo Html::beginForm('', 'post', []); ?>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="row  justify-content-center">
-                    <div class="col form-group p-0">
-                        <?php
-                        echo Html::activeLabel($model, 'group', ['label' => 'Groupe', 'class' => 'form-label']);
-                        echo Html::activeTextInput($model, 'group', ['placeholder' => 'Groupe', 'class' => 'form-control']);
-                        ?>
-                    </div>
-                </div>
-                <div class="row  justify-content-center">
-                    <div class="col form-group p-0">
-                        <?php
-                        echo Html::activeLabel($model, 'name', ['label' => 'Nom', 'class' => 'form-label']);
-                        echo Html::activeTextInput($model, 'name', ['placeholder' => 'Nom', 'class' => 'form-control']);
-                        ?>
-                    </div>
-                </div>
-                <div class="row  justify-content-center">
-                    <div class="col form-group p-0">
-                        <?php
-                        echo Html::activeLabel($model, 'value', ['label' => 'Valeur', 'class' => 'form-label']);
-                        echo Html::activeTextInput($model, 'value', ['placeholder' => 'Valeur', 'class' => 'form-control']);
-                        ?>
-                    </div>
-                </div>
-            </div>
+<div class="fc-row">
+    <?php echo Html::beginForm('', 'post', []); ?>
+        <div class="mb-4">
+                <?php
+                echo Html::activeLabel($model, 'group', ['label' => 'Groupe', 'class' => 'block text-sm font-medium text-gray-700 mb-1']);
+                echo Html::activeTextInput($model, 'group', ['placeholder' => 'Groupe', 'class' => 'w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500']);
+                ?>
         </div>
-        <div class="row  justify-content-center mt-3">
-            <div  class="col-sm-6 text-center form-group">
-                <button type="submit" class="btn btn-primary">Enregister</button>
-            </div>
+        <div class="mb-4">
+                <?php
+                echo Html::activeLabel($model, 'name', ['label' => 'Nom', 'class' => 'block text-sm font-medium text-gray-700 mb-1']);
+                echo Html::activeTextInput($model, 'name', ['placeholder' => 'Nom', 'class' => 'w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500']);
+                ?>
         </div>
-        <?php  echo Html::endForm(); ?>
+        <div class="mb-4">
+                <?php
+                echo Html::activeLabel($model, 'value', ['label' => 'Valeur', 'class' => 'block text-sm font-medium text-gray-700 mb-1']);
+                echo Html::activeTextInput($model, 'value', ['placeholder' => 'Valeur', 'class' => 'w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500']);
+                ?>
+        </div>
+    <div class="mt-6 flex justify-center">
+        <button type="submit" class="px-6 py-2 rounded-md bg-indigo-600 text-white hover:bg-indigo-700 transition">Enregister</button>
     </div>
+    <?php  echo Html::endForm(); ?>
 </div>
