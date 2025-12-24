@@ -1,0 +1,16 @@
+.fc-table {
+  @apply w-full border border-fractal-border rounded-md overflow-hidden;
+}
+
+.fc-table thead {
+  @apply bg-gray-50 text-left text-sm text-fractal-muted;
+}
+
+.fc-table th,
+.fc-table td {
+  @apply px-4 py-2 border-t border-fractal-border;
+}
+
+.fc-table tbody tr:hover {
+  @apply bg-gray-50;
+}

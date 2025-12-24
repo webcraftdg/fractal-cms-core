@@ -20,7 +20,7 @@ class Html extends \yii\helpers\Html
     {
         if ($model->hasErrors($attribute) === true) {
             $classes = ($options['class']) ?? '';
-            $classes .= ' border-danger text-danger';
+            $classes .= ' fc-error';
             $options['class'] = $classes;
         }
         return parent::activeInput($type, $model, $attribute, $options);
@@ -33,7 +33,7 @@ class Html extends \yii\helpers\Html
     {
         if ($model->hasErrors($attribute) === true) {
             $classes = ($options['class']) ?? '';
-            $classes .= ' border-danger text-danger';
+            $classes .= ' fc-error';
             $options['class'] = $classes;
         }
         return parent::activeDropDownList($model, $attribute, $items, $options);
@@ -46,7 +46,7 @@ class Html extends \yii\helpers\Html
     {
         if ($model->hasErrors($attribute) === true) {
             $classes = ($options['class']) ?? '';
-            $classes .= ' border-danger text-danger';
+            $classes .= ' fc-error';
             $options['class'] = $classes;
         }
         return parent::activeTextarea($model, $attribute, $options );

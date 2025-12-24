@@ -1,0 +1,18 @@
+.fc-row {
+  @apply w-full;
+}
+.fc-row-inline {
+  @apply flex w-full inline-block gap-1
+}
+.fc-colum {
+  @apply flex justify-center mb-4;
+}
+.fc-success {
+  @apply bg-fractal-success text-white
+}
+.fc-danger {
+  @apply bg-red-600 text-white
+}
+.fc-primary {
+  @apply bg-fractal-primary text-white;
+}
