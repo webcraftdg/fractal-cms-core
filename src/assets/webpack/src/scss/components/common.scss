@@ -13,6 +13,9 @@
 .fc-danger {
   @apply bg-red-600 text-white
 }
+.fc-warning {
+  @apply bg-orange-600 text-white
+}
 .fc-primary {
   @apply bg-fractal-primary text-white;
 }
