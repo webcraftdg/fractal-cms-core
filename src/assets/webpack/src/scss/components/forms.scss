@@ -19,7 +19,7 @@
   @apply text-sm font-medium text-gray-700;
 }
 .fc-error {
-  @apply border-red-600 text-red-600;
+  @apply outline-double outline-2 outline-offset-2 outline-red-600 text-red-600;
 }
 .fc-form-group {
   @apply mb-2;
